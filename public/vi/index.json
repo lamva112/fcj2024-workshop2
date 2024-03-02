@@ -1,0 +1,218 @@
+[
+{
+	"uri": "//localhost:1313/vi/",
+	"title": "Deploy 2-tier web application",
+	"tags": [],
+	"description": "",
+	"content": "Bắt đầu với 2 Tier aplication Tổng quan 2-tier web application là một kiến trúc phần mềm phổ biến trong đó các thành phần của ứng dụng được chia thành hai tầng chính: tầng giao diện người dùng và tầng dịch vụ hoặc logic xử lý. Trong mô hình này, tầng giao diện người dùng chịu trách nhiệm hiển thị dữ liệu và tương tác với người dùng, trong khi tầng dịch vụ hoặc logic xử lý thực hiện các nhiệm vụ xử lý logic, truy xuất dữ liệu và tương tác với cơ sở dữ liệu hoặc các hệ thống khác.\nKhi triển khai một ứng dụng 2-tier trên AWS (Amazon Web Services), có một số dịch vụ và tài nguyên quan trọng mà bạn có thể sử dụng:\nEC2 (Elastic Compute Cloud): EC2 cung cấp các máy ảo có thể co dãn mà bạn có thể sử dụng để triển khai các thành phần của ứng dụng của mình, bao gồm cả tầng giao diện người dùng và tầng dịch vụ.\nRDS (Relational Database Service): RDS cung cấp các dịch vụ cơ sở dữ liệu quan hệ như MySQL, PostgreSQL, SQL Server, và Oracle. Bạn có thể sử dụng RDS để lưu trữ dữ liệu cho ứng dụng của mình.\nELB (Elastic Load Balancing): ELB cho phép phân phối lưu lượng truy cập giữa các máy chủ EC2 của bạn, giúp cải thiện khả năng mở rộng và độ tin cậy của ứng dụng.\nVPC (Virtual Private Cloud): VPC cho phép bạn tạo ra một môi trường mạng ảo trong AWS để triển khai ứng dụng của mình, cung cấp bảo mật và kiểm soát truy cập.\nTrong bài lab này chúng ta sẽ cùng tìm hiểu tìm 2 tier web aplication và cách thực thi nó trên môi trường AWS\nNội dung Giới thiệu 2-tier Các bước chuẩn bị "
+},
+{
+	"uri": "//localhost:1313/vi/1-introduce/",
+	"title": "Giới thiệu",
+	"tags": [],
+	"description": "",
+	"content": "Giới thiệu kiến trúc 2-tier Kiến trúc 2-tier giống như ứng dụng client-server. Giao tiếp trực tiếp diễn ra giữa máy khách và máy chủ. Không có trung gian nào giữa máy khách và máy chủ. Do sự liên kết chặt chẽ, một ứng dụng hai tầng sẽ chạy nhanh hơn.\nKiến trúc hai tầng được chia thành hai phần:\nClient Application (Client Tier)\nCơ sở dữ liệu (Data Tier)\nTrên phía ứng dụng máy khách, mã được viết để lưu trữ dữ liệu trong cơ sở dữ liệu SQL Server. Máy khách gửi yêu cầu đến máy chủ và máy chủ xử lý yêu cầu đó và gửi nó trở lại với dữ liệu. Vấn đề chính của kiến trúc hai tầng là máy chủ không thể đáp ứng đồng thời nhiều yêu cầu, dẫn đến vấn đề về tính toàn vẹn dữ liệu.\nNó cũng được gọi là công nghệ máy chủ-máy khách.\nƯu điểm:\nDễ bảo trì và việc sửa đổi dễ dàng hơn một chút Giao tiếp nhanh hơn Nhược điểm:\nTrong kiến trúc hai tầng, hiệu suất ứng dụng sẽ bị suy giảm ngay khi số lượng người dùng tăng lên. Không hiệu quả về chi phí Dưới đây là một giải thích đơn giản về việc triển khai ứng dụng web theo kiến trúc hai tầng trên cơ sở hạ tầng AWS.\nTrong phạm vi bài lab này chúng ta chỉ sử dụng các dịch vụ VPC, EC2, ALB và RDS để hiểu về 2 tier. Trong thực tế cần thêm các dịch vụ như S3, Route53,Cloudfront.\nỞ đây bạn có thể thấy rằng một VPC tùy chỉnh được tạo ra để ứng dụng Web của bạn sẽ được bảo mật, chúng ta đã phân tán tất cả các tài nguyên qua hai khu vực khả dụng (AZ) để cung cấp tính dự phòng cho việc bảo trì hệ thống theo lịch trình. Do đó, mỗi khu vực khả dụng đều đang lưu trữ ít nhất một instance cho mỗi dịch vụ, trừ các dịch vụ được thiết kế để dự phòng (ví dụ: Bộ cân bằng Tải,v.v.).\nTầng Web bao gồm hai máy chủ web (một trong mỗi khu vực khả dụng) được triển khai trên các thể hiện Elastic Compute Cloud (EC2). Chúng ta cân bằng lưu lượng bên ngoài đến các máy chủ bằng cách sử dụng Bộ cân bằng Tải (ALB).\nTầng Cơ sở dữ liệu, Dịch vụ Cơ sở dữ liệu Quan hệ (RDS), cung cấp môi trường quan hệ (MySQL, MS SQL hoặc Oracle) cho giải pháp này. Trong thiết kế này, chúng ta cũng có thể cung cấp các bản sao đọc để giảm nhu cầu trên cơ sở dữ liệu chính. Để tối ưu hóa chi phí, với các bản sao đọc bổ sung được tạo ra trong mỗi khu vực khả dụng như được yêu cầu.\n"
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.1-createimas/",
+	"title": "Tạo AMIs",
+	"tags": [],
+	"description": "",
+	"content": "Tạo AMIs AMI cho phép chúng tạo bản sao lưu của máy ảo EC2, bao gồm cả hệ điều hành, ứng dụng và dữ liệu. Do đó chúng ta cần AIMS triển khai hai instance mới với cấu hình tương tự như máy ảo EC2 chúng ta đã tạo trước đó.\nTruy cập AWS Management Console\nTìm EC2 Chọn EC2 Trong giao điện EC2 Chọn Instances Chọn Webserver Chọn Action Trong Action Popup Chọn Image and template Chọn Create image Trong giao diện Create Image Image name, nhập WebserverImage Nhấn Create Tạo Image thành công "
+},
+{
+	"uri": "//localhost:1313/vi/4-createrds/4.1-createdbsubnetgroup/",
+	"title": "Tạo DB Subnet Group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo DB Subnet Group trên AWS Truy cập AWS Management Console\nTìm RDS Chọn RDS Trong giao diện RDS\nChọn Subnet groups Chọn Create DB Subnet group Trong giao diện Add subnets Name, nhập webapp-db-subnet-group Description, nhập DB Subnet group Select web-app-vpc VPC Trong giao diện Add subnets Availability Zones, chọn ap-southeast-1a và ap-southeast-1b Subnets, chọn 10.10.11.0/24 cho ap-southeast-1a và 10.10.12.0/24 cho ap-southeast-1b Chọn Create Hoàn thành tạo DB Subnet Group "
+},
+{
+	"uri": "//localhost:1313/vi/3-createec2server/3.1-createec2/",
+	"title": "Tạo máy chủ EC2",
+	"tags": [],
+	"description": "",
+	"content": "Tạo EC2 nằm trong Public subnet Truy cập AWS Management Console\nTìm EC2 Chọn EC2 Trong giao diện EC2\nChọn Instances Chọn Launch instances Name and tags của instance, nhập Webserver Thực hiện chọn AMI\nChọn Quick Start Chọn Amazon Linux (default) Chọn AMI Amazon Linux 2023 AMI – Free tier eligible Thực hiện chọn Instance type Chọn t2.micro (default) Chọn Create key pair Trong giao diện Create key pair\nKey pair name, nhập aws-keypair (tên tùy chọn, bạn có thể đặt bất kỳ). Key pair type, chọn RSA Private key file format, chọn .pem Thực hiện cấu hình Network\nVPC, chọn ASG Subnet, chọn Public Subnet 1 Auto-assign public IP, chọn Enable Firewall (Security Group), chọn Select existing security group Chọn Public server -SG Chọn Launch instance Hoàn thành tạo instance Đợi khoảng 5 phút Status check sẽ chuyển sang 2/2 checks passed "
+},
+{
+	"uri": "//localhost:1313/vi/7-setup-public-dns/7.1-createdroute53phz/",
+	"title": "Tạo Route53 Public hosted zone",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Route53 Public hosted zone Ở phần lab này chúng ta cần phải có 1 public domain. Bạn ta có thể mua domain ở bất kỳ nhà cung cấp nào.\nTruy cập AWS Management Console\nTìm Route53 Chọn Route53 Trong giao diện Route 53 Dashboard Chọn Create hosted zone Trong giao diện Create hosted zone Domain name, nhập your domain. Ví dụ learnaws.click type, chọn Public hosted zone Chọn Create hosted zone Hoàn thành tạo hosted zone Trong giao diện hosted zone vừa tạo Copy tất cả Value/Route traffic to với type NS vừa được Route53 tạo ra Truy cập vào website quản lý domain Tìm DNS \u0026amp; Nameserver Thêm Value/Route traffic to vào Nameserver Hoàn thành Thêm Value/Route traffic to vào Nameserver "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createvpc/",
+	"title": "Tạo VPC",
+	"tags": [],
+	"description": "",
+	"content": "Tạo VPC Truy cập giao diện AWS Management Console\nTìm VPC Chọn VPC Trong giao diện VPC\nChọn Yours VPC Chọn Create VPC Tiến hành các bước tạo VPC\nResource, chọn VPC only Name tag, nhập web-app-vpc IPv4 CIDR, nhập 10.10.0.0/16 Phần cấu hình Tennacy chúng ta sẽ để ở cơ chế mặc định. Nếu chúng ta chuyển sang Dedicated sẽ có một số EC2 Instance type không phù hợp và sẽ không tạo được trong VPC với tennacy mode là Dedicate\nChọn Create VPC Hoàn thành tạo VPC Xem chi tiết VPC vừa tạo. Kiểm nếu chưa Enable DNS resolution and DNS Hostname\nVào Edit VPC setting Chọn DNS setting Chọn và Save. "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/",
+	"title": "Các bước chuẩn bị",
+	"tags": [],
+	"description": "",
+	"content": "Các bước chuẩn bị Trước tiên, chúng ta sẽ xây dựng một mô hình theo sơ đồ bên dưới để đảm bảo rằng ứng dụng web của chúng ta hoạt động bình thường\nNội dung "
+},
+{
+	"uri": "//localhost:1313/vi/7-setup-public-dns/7.2-adddomaintoweb/",
+	"title": "Cài đặt Public DNS cho ứng dụng web",
+	"tags": [],
+	"description": "",
+	"content": "Cài đặt Public DNS cho ứng dụng web Trong giao diện Route 53 Chọn Hosted zones Chọn Hosted zone name sử dụng cho website Trong giao diện Hosted zone vừa được chọn Chọn Create record Trong giao diện Create record Bật Alias Với Route traffic to Chọn Alias to Aplication and Classic Load Balancer Chọn Asia Pacific (Sigapore) Chọn MyALB Nhấn Create record Hoàn thành tạo reacord Mở trình duyệt và truy cập ứng dụng web của bạn bằng cách sử dụng http://YOUR_DOMAIN_NAME/corp.php "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createsubnet/",
+	"title": "Create Subnet",
+	"tags": [],
+	"description": "",
+	"content": "Create Subnet In the VPC Interface:\nSelect Subnets Select Create subnet In the Create subnet Interface:\nSelect ASG VPC Thực hiện subnet settings\nSubnet name, nhập Public Subnet 1 Chọn AZ ap-southeast-1a IPv4 CIDR block, nhập 10.10.0.0/24 theo kiến trúc mô tả Chọn Create subnet Hoàn thành tạo subnet Thực hiện các bước tương tự tạo thêm các subnet\nPublic subnet 2 với CIDR là 10.10.1.0/24 nằm trong Availability Zone ap-southeast-1b. Private subnet 1 với CIDR là 10.10.11.0/24 nằm trong Availability Zone ap-southeast-1a. Private subnet 2 với CIDR là 10.10.12.0/24 nằm trong Availability Zone ap-southeast-1b. Bạn có thể thấy có 2 cột là Availability Zone và Availability Zone ID. Để tránh việc tài nguyên EC2 được sử dụng không đồng đều, (chúng ta thường có xu hướng dùng AZ a để chạy primary và AZ b để stand by chẳng hạn) nên AWS sẽ gán ngẫu nhiên Availability Zone vào Availability Zone ID. Chúng ta có thể hiểu rằng Availability Zone là 1 dạng alias , còn Availability Zone ID mới chính là yếu tố định danh. Ví dụ ở hình trên Availability Zone ap-southeast-1a được gán Availability Zone ID là apse1-az2. Ở một AWS account khác , Availability Zone ap-southeast-1a có thể có Availability Zone ID là apse1-az1.\nCho phép tự động cấp phát public ip address cho 2 public subnet. Một điểm đáng chú ý nữa là các subnet về cơ bản đều giống nhau, thông qua cấu hình route table và cấp phát public IP address mà chúng ta mới phân chia ra Public và Private Subnet.\nTrong giao diện VPC\nChọn Subnets Chọn Public Subnet 1 Chọn Actions Chọn Edit subnet settings Repeat the same process for Public subnet 2. "
+},
+{
+	"uri": "//localhost:1313/vi/3-createec2server/3.2-connectec2/",
+	"title": "Kiểm tra kết nối",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra kết nối Có nhiều cách kết nối EC2, các bạn có thể tham khảo kết nối EC2 trên windown bằng PuTTY. Trong bài lab, chúng ta sử dụng termial để kết nối EC2\nMở Terminal và chạy lệnh sau với đường dẫn chính xác cho tệp khóa .pem Truy cập vào trang EC2\nChọn Instances Chọn Webserver Chọn Connect Trong giao diện Connect to instance\nChọn SSH Client Copy đường dẫn Example Trong termial đã mớ trước đó Pass đường dẫn Example Nhập yes Kết nối thành công. Kiểm tra kết nối tới internet của EC2 Public, ta thực hiện lệnh: ping amazon.com -c5 "
+},
+{
+	"uri": "//localhost:1313/vi/4-createrds/4.2-createrdsinstance/",
+	"title": "Tạo RDS Database instance",
+	"tags": [],
+	"description": "",
+	"content": "Tạo một DB Instance trên AWS Trong giao diện RDS\nChọn Databases Chọn Create database Trong giao diện Create database Đối với Choose a database creation method, chọn Standard create Đối với Engine options, chọn MySQL Chọn Templates cho DB instance này là Free tier Để nhập mất khẩu chính của bạn ta làm như sau Với DB instance identifierInfo ta nhập webapp-db Mở Credential Settings Giữ nguyên Master username là admin Nhập Master password và Confirm master password Bạn không thể xem lại mật khẩu người dùng chính. Nếu bạn không ghi lại nó, bạn có thể phải thay đổi nó. Nếu bạn cần thay đổi mật khẩu người dùng chính sau khi DB Instance đã sẵn sàng, bạn có thể sửa đổi DB Instance để làm điều này. Để biết thêm thông tin về việc sửa đổi một DB Instance, xem Modifying an Amazon RDS DB Instance.\nTrong phần Connectivity Đối với Compute resource chọn Don’t connect to an EC2 compute resource. Chúng ta sẽ tự set up kết với EC2 trong phần tiếp theo Đối với Virtual private cloud (VPC) chọn web-app-vpc Đối với DB subnet group chọn webapp-db-subnet-group Đối với Public access chọn No Đối với VPC security group (firewall) Chọn **Create new New VPC security group name, nhập webapp-db-security-group Mở Additional configuration và nhập corp cho Initial database name Chọn Create và Db instance bắt đầu khởi tạo Đợi khoảng 5 phút để status chuyển sang available "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.2-createsg/",
+	"title": "Tạo security group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo security group cho EC2 instance mới Như thiết kế ban đầu. EC2 instance được đưa vào private subnet nên chúng ta cần phải đảm bảo rằng các security groups được áp dụng cho EC2 instance cho phép kết nối từ các tài nguyên trong cùng một VPC.\nTrong giao diện EC2 chọn Security Groups Chọn Create security group Trong giao diện Create security group với phần Basic details Security group name, nhập Private server - SG Description, nhập Allow inbound HTTP traffic on port 80 inside VPC VPC, chọn web-app-vpc Thực hiện cấu hình Inbound rules\nTrong Inbound rules, click Add rule.\nChọn Type: HTTP và Source: 10.10.0.0/16. cho phép các instances trong Security Group đó giao tiếp qua giao thức HTTP bên trong VPC.\nNhấn Create security group để hoàn thành tạo VPC Tạo security group cho Application Load Balancer Trong giao diện EC2 chọn Security Groups Chọn Create security group Trong giao diện Create security group với phần Basic details Security group name, nhập ALB-SG Description, nhập Allow inbound HTTP traffic on port 80 from internet VPC, chọn web-app-vpc Thực hiện cấu hình Inbound rules\nTrong Inbound rules, click Add rule. Chọn Type: HTTP và Source: Anywhere .Cho phép các instances trong Security Group đó giao tiếp qua giao thức HTTP với bên ngoài. Chọn Create security group và hoành thành tạo security group "
+},
+{
+	"uri": "//localhost:1313/vi/4-createrds/4.3-updatedbsecuritygroup/",
+	"title": "Cập nhật DB security group",
+	"tags": [],
+	"description": "",
+	"content": "Cập nhật DB security group cho phép traffic từ VPC CIDR Trong giao diện Amazon RDS Chọn Database Mở webapp-db Trong giao diện webapp-db Chọn Connectivity \u0026amp; Security Nhấp vào liên kết VPC Security groups (điều này sẽ mở bảng điều khiển EC2 với DB security group được chọn) Mở webapp-db-security-group Chọn Inbound rules Chọn Edit inbound rules Trong giai diện Edit inbound rules Cập nhật source thành 10.10.0.0/16 Chọn Save rules "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.3-createigw/",
+	"title": "Tạo Internet Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Internet Gateway Trong giao diện VPC\nChọn Internet Gateways Chọn Create internet gateway Thực hiện cấu hình\nName tag, nhập Internet Gateway Chọn Create internet gateway Hoàn thành tạo Internet Gateway Thực hiện Attach VPC\nChọn Actions Chọn Attach to VPC Chọn ASG, VPC ID sẽ được tự động điền. Chọn Attach intermet gateway Khi attach thành công State internet gateway sẽ chuyển sang Attached "
+},
+{
+	"uri": "//localhost:1313/vi/3-createec2server/",
+	"title": "Tạo máy chủ EC2 ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo máy chủ EC2 Ở bước này chúng ta sẽ tạo 2 máy chủ EC2 ( EC2 instance ) như kiến trúc dưới đây.\nNội dung "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.3-createaddtionpvsubnet/",
+	"title": "Tạo thêm 2 Private subnet",
+	"tags": [],
+	"description": "",
+	"content": "Tạo thêm 2 Private subnet cho EC2 Truy cập giao diện AWS Management Console\nTìm VPC Chọn VPC Trong giao điện VPC Chọn Subnet Chọn Create Subnet Trong giao diện Create Subnet VPC, chọn web-app-vpc Trong phần Subnet settings Subnet name, nhập Private subnet 3 Availability Zone, chọn ap-southeast-1a IPv4 subnet CIDR block, nhập 10.10.13.0/24 Nhấn Create subnet Tương tự như vậy, tạo Private subnet 4 với CIDR là 10.10.14.0/24 Hoàn thành tạo thêm 2 private subnet "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.4-crate2ec2fromimage/",
+	"title": "Tạo 2 EC2 instance mới từ IMAs",
+	"tags": [],
+	"description": "",
+	"content": "stop EC2 isntance hiên tại Truy cập AWS Management Console\nTìm EC2 Chọn EC2 Trong giao điện EC2 Chọn Instances Chọn Webserver Chọn Instance state Chọn Stop instance Hiên tại chúng ta không dùng đến Webserver nữa vì toàn bộ cấu hình và cài đặt cho ứng dụng web đã được lưu ở IMAs. Chúng ta sẽ dùng IMAs để tạo Webserver1 và Webserver2 trong private subnet\nTạo 2 EC2 instance mới từ IMAs Trong giao diện Instances chọn launh instance Trong giao diện Launch an instance với Name and tags Info nhập Webserver1 Trong phần Amazon Machine Image Chọn tab My AMIs và chọn Owned by me Chọn WebserImage Thực hiện chọn Instance type Chọn t2.micro (default) Chọn key pair đã tạo trước đó Thực hiện cấu hình Network\nVPC, chọn web-app-vpc Subnet, chọn Private Subnet 3 Auto-assign public IP, chọn disable Firewall (Security Group), chọn Select existing security group Chọn Private server -SG Chọn Launch instance Tương tự như trên tạo Webserver2 với cấu hình network như sau: Hoàn thành tạo 2 EC2 instance mới "
+},
+{
+	"uri": "//localhost:1313/vi/4-createrds/",
+	"title": "Tạo RDS database instance ",
+	"tags": [],
+	"description": "",
+	"content": "Tạo RDS database instance Ở bước này chúng ta sẽ tạo RDS database instance như kiến trúc dưới đây.\nNội dung "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.4-cretaeroutetable/",
+	"title": "Tạo Route Table",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Route Table định tuyến đi ra ngoài internet thông qua Internet Gateway. Trong giao diện VPC\nChọn Route Tables Chọn Create route table Tiến hành cấu hình Route table\nName, nhập Route table-Public VPC, chọn ASG VPC. VPC id sẽ được tự động điền vào. Chọn Cretae route table Hoàn thành tạo Route table Thực hiện Edit route\nChọn Actions Chọn Edit routes Trong giao diện Edit routes\nChọn Add route Điền phần Destination CIDR : 0.0.0.0/0 đại diện cho Internet. Trong phần Target chọn Internet Gateway, sau đó chọn Internet Gateway chúng ta đã tạo. Internet Gateway ID sẽ được tự động điền. Chọn Save changes Hoàn thành và kiểm tra lại Routes Đảm bảo Route table - Public đang được chọn.\nChọn subnet associations Chọn Edit subnet associations Trong bước Edit subnet associations\nMở rộng cột Subnet ID bằng cách kéo thanh ngăn sang phải. Chọn đúng 2 subnet public chúng ta đã tạo. Chọn Save associations Hoàn thành và kiểm tra lại Subnet associations Tạo Route table - Private và gáng vào các private subnet. Trong giao diện Route Tables Chọn Create route table Trong giao diện Create route table Name, nhập Route table - Private VPC, chọn web-app-vpc vpc Chọn Cretae route table Hoàn thành tạo Route table - Private Trong giao diện Route table - Private\nChọn Subnet Associations Chọn Edit subnet associations Trong giao diện Edit subnet associations\nChọn 2 private subnet Chọn Save associations "
+},
+{
+	"uri": "//localhost:1313/vi/5-installandconfigurewebapp/",
+	"title": "Cài đặt và cấu hình web application trên máy chủ EC2",
+	"tags": [],
+	"description": "",
+	"content": "Cài đặt và cấu hình web application trên máy chủ EC2 Kết nối vào EC2 instance qua SSH bằng cách sử dụng IP public của EC2 Cài đặt Apache web server and PHP packages # Chuyển sang chế độ superuser sudo su # Cập nhật hệ thống bằng trình quản lý gói DNF dnf update -y # Cài đặt máy chủ Apache HTTP (httpd), PHP, MariaDB và các gói cần thiết khác dnf install -y httpd php php-mysqli mariadb105 # Khởi động máy chủ Apache HTTP systemctl start httpd # Cho phép máy chủ Apache HTTP khởi động tự động khi khởi động hệ thống systemctl enable httpd Cấu hình các thiết lập kết nối cơ sở dữ liệu Tạo thư mục inc # Di chuyển đến thư mục /var/www cd /var/www # Tạo thư mục mới có tên là inc mkdir inc # Di chuyển đến thư mục inc vừa tạo cd inc Tạo một file mới có tên là dbinfo.inc (Bạn có thể sử dụng vi hoặc nano trong ví dụ này sẽ dùng vi). Màn hìh sẽ hiện lên 1 file trống vi dbinfo.inc nhấn i để bật chế độ insert Thêm nội dung sau đây. Thay thế các giá trị cho các tham số dựa trên môi trường của bạn. \u0026lt;?php define(\u0026#39;DB_SERVER\u0026#39;, \u0026#39;db_instance_endpoint\u0026#39;); define(\u0026#39;DB_USERNAME\u0026#39;, \u0026#39;admin\u0026#39;); define(\u0026#39;DB_PASSWORD\u0026#39;, \u0026#39;master password\u0026#39;); define(\u0026#39;DB_DATABASE\u0026#39;, \u0026#39;corp\u0026#39;); ?\u0026gt; Hãy thay thế các giá trị cẩn thận vì nếu sai chúng ta khổng thể kết nối với RDS và ứng dụng web của chúng ta sẽ không hoạt động\nNhấn esc và nhập :wq để lưu và thoát khỏi vi nhập cd để trở về root Cài đặt và cấu hình ứng dụng web trên EC2 Tạo tập tin ứng dụng corp.php trong thư mục /var/www/html cd /var/www/html dùng vi để tạo file corp.php (cách tạo như hướng dẫn phía trên) Thêm đoạn code bên dưới vào corp.php Bạn có thể copy file corp.php từ github repo này : https://github.com/lamva112/fcj2024-example/blob/main/corp.php\nMở trình duyệt của bạn và truy cập vào địa chỉ URL http://PUBLICIP/corp.php PUBLICIP là public IP của EC2\nHoàn thành tạo ứng dụng web Bạn có thể thêm dữ liệu vào database trực tiếp từ ứng dụng web\nXác minh dữ liệu trong cơ sở dữ liệu. Trở lại root bằng lệnh cd Cài đặt mqsql client trong the ec2 instance # Cài đặt pip (Amazon Linux 2023 không có pip mặc định). dnf install -y pip # Cài đặt các phụ thuộc. dnf install -y mariadb105-devel gcc python3-devel # Cài đặt mysqlclient pip install mysqlclient Kết nối đến cơ sở dữ liệu và truy vấn dữ liệu #Truy cập vào MySQL mysql -h \u0026lt;database endpoint\u0026gt; -u admin –p #Truy cập vào corp database MySQL [(none)]\u0026gt; connect corp #Truy vấn dữ liệu MySQL [corp]\u0026gt; select * from EMPLOYEES; Thêm nhiều dữ liệu từ trang web và xem xét xem có phản ánh thay đổi không. Tùy chọn chèn dữ liệu vào bảng cơ sở dữ liệu trực tiếp và xem xét xem trang web có hiển thị dữ liệu không. insert into EMPLOYEES values (\u0026#39;2\u0026#39;,\u0026#39;Phuc\u0026#39;,\u0026#39;18\u0026#39;,\u0026#39;Ho Chi Minh\u0026#39;); "
+},
+{
+	"uri": "//localhost:1313/vi/2-prerequiste/2.5-createsecuritygroup/",
+	"title": "Tạo Security Group",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Security Group Tạo Security Group cho máy chủ nằm trong Public subnet Trong giao diện VPC\nChọn Security Group Chọn Cretae security group Thực hiện cấu hình Security group\nSecurity Group name, nhập Public server - SG Description, nhập Allow SSH and Ping for servers in public subnet. Chọn web-app-vpc VPC Thực hiện cấu hình Inbound rules\nTrong Inbound rules, click Add rule.\nChọn Type: SSH và Source: My IP. Anywhere Cho phép ping từ bất kì địa chỉ IP nào.\nChọn Add rule để thêm 1 rule mới.\nChọn Type: HTTP và Source: Anywhere. cho phép các instances trong Security Group đó giao tiếp qua giao thức HTTP với bên ngoài.\nKiểm tra Outbound rules và chọn Create security group Hoàn thành tạo security group cho máy chủ nằm trong Public subnet "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.5-createtargetgroup/",
+	"title": "Tạo Target Groups",
+	"tags": [],
+	"description": "",
+	"content": "Tạo target group Trong Amazon Web Services (AWS), một target group là một nhóm các máy chủ đích mà các yêu cầu từ một dịch vụ được định tuyến đến. Target group thường được sử dụng trong các dịch vụ như Elastic Load Balancing (ELB) hoặc AWS Auto Scaling để định tuyến yêu cầu đến các máy chủ đích phù hợp.\nTron bài lab này chúng ta tạo một target group cho 2 EC2 instances, để xác định các yêu cầu đến từ một dịch load balancer sẽ được định tuyến đến 2 EC2 instances này. Việc này giúp phân phối tải (load balancing) và tăng tính sẵn sàng và độ tin cậy của ứng dụng bằng cách chia sẻ tải làm việc giữa các máy chủ.\nTrong giao điện EC2 Chọn Target Groups Chọn Create target group Trong giao diện step 1 (Specify group details) Với phần Basic configuration, chọn target type là instance Tiếp tục cấu hình target group Với Target group name nhập ALB-TG với Protocol : Port chọn HTTP Chọn IP address type là IPv4 VPC, chọn web-app-vpc Tạo Health checks Health check protocol, Chọn HTTP Health check path, nhập corp.php Trong AWS, health checks trong target group được sử dụng để kiểm tra tình trạng của các instances hoặc targets mà target group đang quản lý. Mục tiêu của health checks là đảm bảo rằng chỉ những instance hoặc targets khỏe mạnh và sẵn sàng phục vụ yêu cầu mới sẽ nhận được lưu lượng từ load balancer hoặc các dịch vụ khác.\nDưới đây là một số mục đích chính của việc sử dụng health checks trong target group:\nGiữ cho Load Balancer chỉ định tuyến lưu lượng đến các instance hoạt động: Health checks đảm bảo rằng chỉ có các EC2 instances hoặc targets đang hoạt động và khỏe mạnh mới nhận được lưu lượng từ Load Balancer. Điều này giúp ngăn chặn việc định tuyến lưu lượng đến các instance không hoạt động hoặc gặp sự cố.\nTăng tính sẵn sàng và độ tin cậy của ứng dụng: Bằng cách chấp nhận chỉ những instance hoạt động và khỏe mạnh vào target group, bạn đảm bảo rằng ứng dụng của mình luôn sẵn sàng phục vụ yêu cầu từ người dùng mà không gặp sự cố.\nTự động phát hiện và xử lý các sự cố: Nếu một EC2 instance hoặc target không vượt qua health check, load balancer hoặc các dịch vụ khác có thể tự động loại bỏ nó khỏi quá trình định tuyến lưu lượng. Điều này giúp tự động phát hiện và xử lý các sự cố mà không cần sự can thiệp thủ công.\nNhấn next để chuyển sang step 2\nTrong step 2 (Register targets)\nChọn 2 instance Webserver1 và Webserver2 Chọn Include as pendding below Kiểm tra lại 2 instance đã được thêm vào target và nhấn Create target group Hoàn thành tạo target group "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/",
+	"title": "Tạo 2-tier web app có tính khả dụng cao",
+	"tags": [],
+	"description": "",
+	"content": "Tạo 2-tier web có tính khả dụng cao Trong cảnh quan số hóa ngày nay, đảm bảo tính sẵn có và đáng tin cậy của các ứng dụng web là điều quan trọng để đáp ứng mong đợi của người dùng và duy trì sự liên tục kinh doanh. Với sự xuất hiện của cloud computing, các nền tảng như Amazon Web Services (AWS) cung cấp cơ sở hạ tầng và dịch vụ mạnh mẽ để đạt được tính sẵn có cao và khả năng chống lỗi.\nMột kiến trúc ứng dụng web hai tầng có tính sẵn cao trên AWS thể hiện tính linh hoạt, khả năng mở rộng và tối ưu hiệu suất. Kiến trúc này bao gồm hai tầng riêng biệt: tầng trình bày chịu trách nhiệm phục vụ các yêu cầu của người dùng và tầng dữ liệu quản lý lưu trữ và truy xuất dữ liệu ứng dụng. Sử dụng các dịch vụ của AWS, kiến trúc này đảm bảo thời gian hoạt động liên tục, khả năng mở rộng liền mạch và tận dụng tài nguyên một cách hiệu quả.\nỞ tầng trình bày, các máy chủ web được lưu trữ trên các instance Amazon EC2, phân tán trên nhiều khu vực có sẵn (AZs) để chống lỗi. Các instance này được cấu hình trong một nhóm tự động mở rộng, tự động điều chỉnh dung lượng để phù hợp với yêu cầu lưu lượng dao động. Một Cân Bằng Tải Đàn Hồi (ELB) phân phối thông tin yêu cầu đến các instance khỏe mạnh, đảm bảo hiệu suất tối ưu và giảm thiểu các điểm lỗi đơn.\nSong song với đó, tầng dữ liệu phụ thuộc vào Amazon RDS, một dịch vụ cơ sở dữ liệu quan hệ được quản lý, cung cấp khả năng mở rộng, sao lưu tự động và tùy chọn triển khai đa khu vực. Bằng cách sao chép dữ liệu qua các khu vực, RDS tăng cường tính chống lỗi và độ bền dữ liệu, giảm thiểu thời gian chết và mất dữ liệu trong trường hợp sự cố xảy ra.\nSự phối hợp của các thành phần này trong một kiến trúc hai tầng có tính sẵn cao trên AWS thúc đẩy sự chịu đựng trước sự cố phần cứng, sự cố mạng và sự cố khu vực. Ngoài ra, AWS CloudWatch cung cấp khả năng giám sát và cảnh báo toàn diện, cho phép quản lý một cách chủ động các thước đo sức khỏe hệ thống và hiệu suất.\nTóm lại, một kiến trúc ứng dụng web hai tầng có tính sẵn cao trên AWS là biểu tượng của các nguyên tắc cloud-native hiện đại, giúp các doanh nghiệp cung cấp trải nghiệm người dùng liền mạch trong khi duy trì sự xuất sắc vận hành. Bằng cách tận dụng cơ sở hạ tầng có khả năng mở rộng và dịch vụ đáng tin cậy của AWS, tổ chức có thể đạt được tính đáng tin cậy, linh hoạt và khả năng mở rộng không giới hạn trong thời đại số hóa.\nDưới đây là một giải thích đơn giản về việc triển khai ứng dụng web theo kiến trúc hai tầng trên cơ sở hạ tầng AWS.\n"
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.6-createalb/",
+	"title": "Tạo Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Application Load Balancer Trong giao điện EC2 Chọn Load Balancers Chọn Create load balancers Trong giao diện Compare and select load balancer type Chọn Create trong trường Application Load Balancer Trong giao diện Create Application Load Balancer Với Load balancer name, nhập MyALB Với Scheme, chọn Internet-facing Với IP address typeInfo, chọn IPv4 Tiếp tục cấu hình Network mapping VPC, chọn Web-app-vpc Với ap-southeast-1a (apse1-az2), chọn Public Subnet 1 Với ap-southeast-1b (apse1-az1), chọn Publuc Subnet 2 Trong phần Security groups chọn ALB-SG Trong phần Listeners and routing Với Default actionInfo, ta chọn target group là ALB-TG Nhấn Create để hoàn tất tạo Application Load Balancer "
+},
+{
+	"uri": "//localhost:1313/vi/7-setup-public-dns/",
+	"title": "Cấu hình Public DNS với Route53",
+	"tags": [],
+	"description": "",
+	"content": "Cấu hình Public DNS với Route53 Thêm một tên miền tùy chỉnh vào Route 53 là một bước quan trọng đối với các tổ chức đang nhắm đến việc thiết lập sự hiện diện trực tuyến của họ hoặc di chuyển cơ sở hạ tầng web hiện có của họ vào hạ tầng AWS. Bằng cách tích hợp tên miền của bạn với Route 53, bạn có quyền truy cập vào các tính năng quản lý DNS tiên tiến, bao gồm đăng ký tên miền, các chính sách định tuyến và kiểm tra sức khỏe, đảm bảo luồng lưu lượng liên tục và hiệu suất tối ưu cho các ứng dụng của bạn.\nTrong hướng dẫn toàn diện này, chúng tôi sẽ hướng dẫn bạn qua quá trình từng bước để thêm tên miền tùy chỉnh của bạn vào Route 53. Từ cấu hình các thiết lập DNS đến thiết lập bộ bản ghi tài nguyên, chúng tôi sẽ bao gồm mọi thứ bạn cần biết để thành công trong việc ánh xạ tên miền của mình vào hạ tầng AWS và tận dụng sự mở rộng và đáng tin cậy của Route 53.\nCho dù bạn đang khởi chạy một trang web mới, triển khai một ứng dụng web, hoặc di chuyển cơ sở hạ tầng tên miền hiện có của bạn vào AWS, hướng dẫn của chúng tôi sẽ cung cấp cho bạn kiến thức và công cụ cần thiết để điều hướng quá trình cấu hình tên miền một cách hiệu quả và hiệu quả.\n"
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.7-createreadrelyca/",
+	"title": "Tạo read replica",
+	"tags": [],
+	"description": "",
+	"content": "Tạo Read Replica Giả sử chúng ta đang tạo 1 trang web thương mại điện tử với số lượng read lên database nhiều hơn write. Do đó trong bài lab này chúng ta sẽ chọn Read Replica để tối ưu chi phí\nTrong giao diện RDS\nChọn Databases Chọn webapp-db Trong giao diện RDS Chọn Action Trong Pop up, chọn Create read replica Trong giao diện Create read replica,\nDb instance identifier, nhập db-read-replica Với Connectivity, chọn Availability Zone chọn **ap-southest-1b (như thiết kết ban đầu) Với phần Availability\nChọn Single DB instance Với phần Connectivity\nChọn Availability Zone chọn ap-southest-1b (như thiết kết ban đầu) Nhấn Create read replica để AWS bắt đầu tạo read replica "
+},
+{
+	"uri": "//localhost:1313/vi/8-cleanupresource/",
+	"title": "Dọn dẹp tài nguyên",
+	"tags": [],
+	"description": "",
+	"content": "Dọn dẹp tài nguyên Chúng ta sẽ tiến hành xóa các tài nguyên theo thứ tự sau\nTerminate các EC2 Instance. Terminate EC2 instance. Truy cập Amazon EC2 console Trên thanh điều hướng bên trái, chọn Intances Chọn tất cả EC2 Instance liên quan tới bài lab. Chọn Instance state Chọn Terminate instance Xác nhận terminate. Xóa Load balancer Xoá Load balancer Truy cập Amazon EC2 console Trên thanh điều hướng bên trái, chọn Load balancer Chọn Load balancer liên quan tới bài lab. Chọn Action Chọn Delete load balancer "
+},
+{
+	"uri": "//localhost:1313/vi/6-makewebsitehighly/6.8-checktatus/",
+	"title": "Kiểm tra target heath và truy cập ứng dụng web",
+	"tags": [],
+	"description": "",
+	"content": "Kiểm tra target heath Trong giao điện EC2 Chọn Target Groups Chọn ALB-TG Trong Target group: ALB-TG Chọn Targets Dựa vào target group chúng ta có thể thấy rằng cả 2 EC2 instance đều hoạt động tốt\nTruy cập vào ứng dụng web Trong giao điện EC2 Chọn Load Balancers Chọn MyALB Với Load balancer: MyALB copy DNS name và mở trên trình duyệt Truy cập vào trang web với đường dẫn DNS name/corp.php "
+},
+{
+	"uri": "//localhost:1313/vi/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "//localhost:1313/vi/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]
