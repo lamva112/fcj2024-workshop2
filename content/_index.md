@@ -4,7 +4,7 @@ date :  "`r Sys.Date()`"
 weight : 1 
 chapter : false
 ---
-# Starting with 2 Tier Application
+# Use AWS CDK to deploy Spring Boot services on AWS ECS Fargate
 
 #### Overview
 
