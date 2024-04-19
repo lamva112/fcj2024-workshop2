@@ -26,6 +26,8 @@
                 href="//localhost:1313/vi/1-introduce/"
                 />
   </url><url>
+    <loc>//localhost:1313/vi/7-createapigateway/7.1-createnew/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.1-createfirststack/</loc>
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.1-createecscluster/</loc>
@@ -52,6 +54,8 @@
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.2-createnlb/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/7-createapigateway/7.2-createfirstmethod/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.2-organizestack/</loc>
@@ -65,6 +69,8 @@
     <loc>//localhost:1313/vi/6-createservice/6.3-createsericelogdriver/</loc>
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.3-createvpclink/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/7-createapigateway/7.3-organizestack/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.3-implementstack/</loc>
   </url><url>
@@ -88,9 +94,15 @@
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.5-addlistenteralb/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/7-createapigateway/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.7-createfagateservice/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.8-configtargergroup/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/6-createservice/6.9-confignlb/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/6-createservice/6.10-organizestack/</loc>
   </url><url>
     <loc>//localhost:1313/vi/categories/</loc>
     <xhtml:link

@@ -14,6 +14,13 @@
 	"content": "Workshop này sẽ bao gồm các tài nguyên và công cụ AWS sau đây: AWS ECS: Dịch vụ Elastic Container Service là dịch vụ điều phối container của AWS. Với dịch vụ này, bạn có thể quản lý việc thực thi các container dịch vụ nhỏ dựa trên Docker một cách mạnh mẽ và có khả năng mở rộng. Với AWS Fargate, dịch vụ tính toán không máy chủ dành cho các container từ Amazon Web Services, bạn không cần tạo các máy EC2, giảm chi phí vận hành của các ứng dụng dựa trên container.\nAWS ECR: Với Elastic Container Registry (ECR) từ AWS, bạn có thể tạo các kho lưu trữ riêng để lưu trữ các hình ảnh Docker của các dịch vụ nhỏ.\nAWS VPC: Với Virtual Private Cloud (VPC) từ AWS, bạn có thể bảo vệ cơ sở hạ tầng bằng các mạng con riêng và các chính sách bảo mật mạng cho các quy tắc lưu lượng đi vào và đi ra.\nAWS ALB: Application Load Balancer từ AWS cho phép cân bằng lưu lượng HTTP đến giữa tất cả các phiên bản ứng dụng có sẵn, và với các nhóm mục tiêu tích hợp, mỗi phiên bản có thể được giám sát để chỉ nhận lưu lượng nếu nó đang hoạt động bình thường.\nAPI Gateway REST: Với AWS API Gateway, bạn có thể bảo vệ API REST của ứng dụng, cũng như thực hiện kiểm tra hợp lệ của các tham số query string và nội dung yêu cầu.\nCloudWatch Logs: Trách nhiệm của nó là tập trung các nhật ký ứng dụng và các chỉ số của chúng. Các ứng dụng sẽ được tạo ra trong khóa học này sẽ tạo ra các nhật ký vào CloudWatch Logs theo định dạng JSON, sử dụng thư viện log4j2. Điều này cho phép chúng ta chèn các tham số vào các nhật ký, để được sử dụng trong các truy vấn trong bảng điều khiển AWS CloudWatch Logs Insights.\nCloudWatch Alarms: Với các cảnh báo từ CloudWatch, bạn có thể theo dõi các sự kiện bất thường từ các ứng dụng và tài nguyên AWS.\nCloudWatch Logs: Trách nhiệm của nó là tập trung các nhật ký ứng dụng và các chỉ số của chúng. Các ứng dụng sẽ được tạo ra trong khóa học này sẽ tạo ra các nhật ký vào CloudWatch Logs theo định dạng JSON, sử dụng thư viện log4j2. Điều này cho phép chúng ta chèn các tham số vào các nhật ký, để được sử dụng trong các truy vấn trong bảng điều khiển AWS CloudWatch Logs Insights.\nDynamoDB: DynamoDB là một dịch vụ quản lý cơ sở dữ liệu NoSQL mạnh mẽ và phi quan hệ. Khóa học này giới thiệu việc sử dụng DynamoDB enhanced client từ AWS SDK V2 cho Java, đây là một thư viện cấp cao cho phép ánh xạ các lớp phía máy khách với các bảng DynamoDB.\nSQS: SQS là một dịch vụ hàng đợi cho phép giao tiếp bất đồng bộ giữa các ứng dụng, nhằm trao đổi các thông điệp và sự kiện.\nSNS: Với SNS bạn có thể tạo các chủ đề và xuất bản các thông điệp để được nhận bởi nhiều tài nguyên và ứng dụng.\n"
 },
 {
+	"uri": "//localhost:1313/vi/7-createapigateway/7.1-createnew/",
+	"title": "Tạo API Gateway resource",
+	"tags": [],
+	"description": "",
+	"content": "Tạo API Gateway resource Mở CDK project tạo stack mới với tên là ApiStack và cho ApiStack kế thừa lớp Stack của thư viện amazon.awscdk public class ApiStack extends Stack { } Để tạo ApiStack chúng ta cần VPC, Cluster, NetworkLoadBalancer mà chúng ta đã tạo trước đó. Nên chúng ta cần tạo 1 record class tên là ProductsServiceProps để truyền vào ApiStack. Thêm đoạn code bên ngoài class ApiStack record ApiStackProps( NetworkLoadBalancer networkLoadBalancer, VpcLink vpcLink ){} Tạo ApiStack contructor public ApiStack(final Construct scope, final String id, final StackProps props, ApiStackProps apiStackProps) { super(scope, id, props); } Khởi tạo Một đối tượng RestApi, được đặt tên là ECommerceAPI. Đây là một API Gateway, nơi các API endpoint được khai báo và cấu hình. RestApi restApi = new RestApi(this, \u0026#34;RestApi\u0026#34;, RestApiProps.builder() .restApiName(\u0026#34;ECommerceAPI\u0026#34;) .build() ); "
+},
+{
 	"uri": "//localhost:1313/vi/3-createecr/3.1-createfirststack/",
 	"title": "Tạo cloudformation stack đầu tiên",
 	"tags": [],
@@ -70,6 +77,13 @@
 	"content": "Tạo Network Load Balancer stack Trong CDK project tạo stack mới với tên là NlbStack.java và sau đó cho class NlbStack kế thừa lớp Stack cửa thư viện amazon.awscdk Để tạo NLB stack chúng ta cần VPC mà chúng ta đã tạo trước đó. Nên chúng ta cần tạo 1 record class tên là NlbStackProps để truyền VPC vào NLB Stack. Thêm đoạn code bên ngoài class ClusterStack record NlbStackProps( Vpc vpc ){} Trong NLB Stack chúng ta sẽ tạo Vpc Link, Network Load Balancer, Application Load Balancer nên trước tiên chúng ta cần tạo 3 thuộc tính ứng với chúng. private final VpcLink vpcLink; private final NetworkLoadBalancer networkLoadBalancer; private final ApplicationLoadBalancer applicationLoadBalancer; Tiếp theo, chúng ta tạo các getter cho 3 thuộc tính trên public VpcLink getVpcLink() { return vpcLink; } public NetworkLoadBalancer getNetworkLoadBalancer() { return networkLoadBalancer; } public ApplicationLoadBalancer getApplicationLoadBalancer() { return applicationLoadBalancer; } Tạo contructor cho class NlbStack public NlbStack(final Construct scope, final String id, final StackProps props, NlbStackProps nlbStackProps) { super(scope, id, props); } Tạo network load balancer Trước tiên chúng ta sẽ tạo network load balancer (NLB). Để tạo NLB chúng ta cần khởi tạo đối tượng networkLoadBalancer trong contructor this.networkLoadBalancer = new NetworkLoadBalancer(this, \u0026#34;Nlb\u0026#34;, NetworkLoadBalancerProps.builder() .build()); Tiếp theo đặt tên cho NLB là ECommerceNlb bằng cách .loadBalancerName(\u0026#34;ECommerceAlb\u0026#34;) Như trong thiết kế trên diagram. Chúng ta sẽ khổng để NLB và ALB ngoài VPC nên chúng ta sẽ làm như sau .internetFacing(false) .vpc(nlbStackProps.vpc()) "
 },
 {
+	"uri": "//localhost:1313/vi/7-createapigateway/7.2-createfirstmethod/",
+	"title": "Tạo product resource và method đầu tiên",
+	"tags": [],
+	"description": "",
+	"content": "Tạo product resource và method đầu tiên Tạo phương thức createProductsResource với 2 tham số là RestApi và ApiStackProps và khởi tạo trong contructor private void createProductsResource(RestApi restApi, ApiStackProps apiStackProps) { } Tạo một tài nguyên (resource) mới trong API Gateway với đường dẫn là /products. Sử dụng restApi.getRoot().addResource(\u0026ldquo;products\u0026rdquo;) sẽ tạo ra một tài nguyên con mới (sub-resource) có đường dẫn là /products từ root của API (restApi). //products Resource productsResource = restApi.getRoot().addResource(\u0026#34;products\u0026#34;); Thêm phương thức GET cho productsResource bằng phương thức addMethod productsResource.addMethod(\u0026#34;GET\u0026#34;); Tiếp theo chúng ta sẽ định nghĩa một Integration để xử lý yêu cầu GET tới endpoint /products. productsResource.addMethod(\u0026#34;GET\u0026#34;, new Integration( IntegrationProps.builder() .build())); Sau đó, chọn loại Integration là HTTP_PROXY, nghĩa là sử dụng proxy HTTP để chuyển tiếp yêu cầu và chọn Loại phương thức của Integration là GET. .type(IntegrationType.HTTP_PROXY) .integrationHttpMethod(\u0026#34;GET\u0026#34;) Đặt URI của backend mà API Gateway sẽ chuyển tiếp yêu cầu tới. Trong đó, DNS name của NetworkLoadBalancer được sử dụng để tạo URL và cổng 8081 cùng với đường dẫn API /api/products được gọi. .uri(\u0026#34;http://\u0026#34; + apiStackProps.networkLoadBalancer().getLoadBalancerDnsName() +\u0026#34;:8080/api/products\u0026#34;) Tiếp theo dùng options được sử dụng để cấu hình thêm các tùy chọn IntegrationOptions .options(IntegrationOptions.builder() .build()) Chỉ định VpcLink để xác định kết nối VPC nào sẽ được sử dụng cho phương thức Integration và xác định loại kết nối là VPC_LINK, nghĩa là kết nối qua VPC của AWS. .vpcLink(apiStackProps.vpcLink()) .connectionType(ConnectionType.VPC_LINK) "
+},
+{
 	"uri": "//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/",
 	"title": "Tạo Spring Boot project",
 	"tags": [],
@@ -117,6 +131,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Tạo VPC link Để tạo VPC link chúng ta cần khởi tạo đối tượng vpcLink đã khai báo trước đó this.vpcLink = new VpcLink(this, \u0026#34;VpcLink\u0026#34;, VpcLinkProps.builder() .build()); Tiếp theo chúng ta sẽ kết nối PVC Link với Network Load Balancer tạo 1 target cho .targets(Collections.singletonList(this.networkLoadBalancer)) "
+},
+{
+	"uri": "//localhost:1313/vi/7-createapigateway/7.3-organizestack/",
+	"title": "Tổ chức Stack",
+	"tags": [],
+	"description": "",
+	"content": "Tổ chức Stack Mở file root Fcj2024CdkApp Tạo ApiStack với id là Api ApiStack apiStack = new ApiStack(app, \u0026#34;Api\u0026#34;, StackProps.builder() .build(), new ApiStackProps( nlbStack.getNetworkLoadBalancer(), nlbStack.getVpcLink())); Thêm environmen* và Tags cho ApiStack .env(environment) .tags(infraTags) Thêm phụ thuộc để đảm bảo rằng NLB được tao trước API Gateway apiStack.addDependency(nlbStack); Kiểm tra resource Trong giao diện AWS console, nhập API Gateway Trong giao diện API Gateway chọn APIs ta có thể thấy một API tên ECommerceAPI đã được tạo Chọn ECommerceAPI sau đó chọn GET Test API trên postman Trong giao diện ECommerceAPI chọn Stages và copy Invoke URL Mở postman và tạo phương thức GET với đường dẫn Invoke URL/product "
 },
 {
 	"uri": "//localhost:1313/vi/3-createecr/3.3-implementstack/",
@@ -196,6 +217,13 @@
 	"content": "Thêm Listener vào Application Load Balancer Khởi tạo ApplicationListener ApplicationListener applicationListener = productsServiceProps.applicationLoadBalancer() Thêm 1 listener với id là ProductsServiceAlbListener và khởi tạo ApplicationListenerProps .addListener(\u0026#34;ProductsServiceAlbListener\u0026#34;, ApplicationListenerProps.builder() .build()); Tiếp theo cho ta sẽ cho ALB listener trên port 8081 và sử dụng giao thức HTTP .port(8081) .protocol(ApplicationProtocol.HTTP) Cuối cùng thêm applicationListener vào Application Load Balancer .loadBalancer(productsServiceProps.applicationLoadBalancer()) "
 },
 {
+	"uri": "//localhost:1313/vi/7-createapigateway/",
+	"title": "Tạo API Gateway với CDK",
+	"tags": [],
+	"description": "",
+	"content": "Trong phần này chúng ta sẽ tạo API Gateway bằng CDK "
+},
+{
 	"uri": "//localhost:1313/vi/6-createservice/6.7-createfagateservice/",
 	"title": "Tạo AWS Fargate service",
 	"tags": [],
@@ -208,6 +236,27 @@
 	"tags": [],
 	"description": "",
 	"content": "Cầu hình AWS ALB Target group và cơ chế health check Trước tiên tạo taget group từ applicationListener bằng phương thức .addTargets với ID là ProductsServiceAlbTarget applicationListener.addTargets(\u0026#34;ProductsServiceAlbTarget\u0026#34;, AddApplicationTargetsProps.builder() .build() ); Đặt tên cho target group là productsServiceAlb .targetGroupName(\u0026#34;productsServiceAlb\u0026#34;) Tiếp theo chúng ta sẽ tạo port 8001 để Load Balancer gửi traffic đến và dùng giao thức HTT để giao tiếp với các target .port(8081) .protocol(ApplicationProtocol.HTTP) Tiếp thep ta cần thêm danh sách các service Fargate vào target .targets(Collections.singletonList(fargateService)) Tiếp theo chúng ta sẽ định nghĩa độ trễ cho phép là 30 giây trước khi Load Balancer hủy bỏ một target khi nó bị đánh dấu là không khả dụng .deregistrationDelay(Duration.seconds(30)) Tiếp theo chúng ta sẽ cấu hình health check và bât tính năng health check để đảm bảo rằng các target đang hoạt động đúng cách. .healthCheck(HealthCheck.builder() .enabled(true) .build()) Kế tiếp chúng ta sẽ cấu hình khoảng thời gian giữa các lần kiểm tra sức khỏe là 30 giây và thời gian tối đa để chờ đợi phản hồi từ một target trong mỗi lần kiểm tra là 10 giây .interval(Duration.seconds(30)) .timeout(Duration.seconds(10)) Cuối cùng chúng ta sẽ khai báo đường dẫn(endpoint) được sử dụng để kiểm tra sức khỏe của các target là /actuator/health và port 8081 được sử dụng trong health check để giao tiếp với các target "
+},
+{
+	"uri": "//localhost:1313/vi/6-createservice/6.9-confignlb/",
+	"title": "Cấu hình AWS Network Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Tạo NetworkListener Trước tiên chùng ta cần khởi tạo đối tượng NetworkListener NetworkListener networkListener = productsServiceProps.networkLoadBalancer() .addListener(\u0026#34;ProductsServiceNlbListener\u0026#34;, BaseNetworkListenerProps.builder() .build()); Bây giờ, chúng ta sẽ cấu hình cho networkListener lắng nghe trên port 8081 .port(8080) Sử dụng protocol là giao thức mà listener sử dụng để lắng nghe các kết nối. Ở đây chúng ta dùng TCP .protocol(software.amazon.awscdk.services.elasticloadbalancingv2.Protocol.TCP) software.amazon.awscdk.services.elasticloadbalancingv2.Protocol.TCP: Đây là cách để chỉ định giao thức TCP thông qua CDK. Protocol.TCP là một hằng số trong CDK để đại diện cho giao thức TCP.\nCấu hình NLB target group Sử dụng phương thức addTargets được gọi trên đối tượng networkListener để thêm các target (đích) mới cho listener đã được cấu hình trước đó trên NLB. networkListener.addTargets(\u0026#34;ProductsServiceNlbTarget\u0026#34;, AddNetworkTargetsProps.builder() .build() ); Tiếp theo cho ta se cho các kết nối sẽ được gửi đến cổng 8081 trên các target. .port(8081) Để kết nối đến các target ta sử dụng giao thức TPC .protocol(software.amazon.awscdk.services.elasticloadbalancingv2.Protocol.TCP) Tiếp theo tạo tên của nhóm target (target group) mà các target sẽ được thêm vào là productsServiceNlb .targetGroupName(\u0026#34;productsServiceNlb\u0026#34;) Tiếp theo chúng ta sẽ chỉ định danh sách các target cụ thể cần được thêm vào bằng phương thức targets .targets(Collections.singletonList()) Tạo ra một target sử dụng cho dịch vụ Fargate. Một target Fargate sẽ được tạo để xử lý các kết nối gửi đến từ NLB. .targets(Collections.singletonList( fargateService.loadBalancerTarget(LoadBalancerTargetOptions.builder() .build()) )) Tiếp theo chúng ta sẽ định nghĩa tên của container trong dịch vụ Fargate mà các kết nối sẽ được gửi đến là productsService .targets(Collections.singletonList( fargateService.loadBalancerTarget(LoadBalancerTargetOptions.builder() .containerName(\u0026#34;productsService\u0026#34;) .build()) )) Cuối cùng cấu hình port 8081 của container trong dịch vụ Fargate mà các kết nối sẽ được gửi đến và giao thức là TCP .targets(Collections.singletonList( fargateService.loadBalancerTarget(LoadBalancerTargetOptions.builder() .containerName(\u0026#34;productsService\u0026#34;) .containerPort(8081) .protocol(Protocol.TCP) .build()) )) "
+},
+{
+	"uri": "//localhost:1313/vi/6-createservice/6.10-organizestack/",
+	"title": "Tổ chức và deploy Stack",
+	"tags": [],
+	"description": "",
+	"content": "Tổ chức ProductsServiceStack Stack Mở file root Fcj2024CdkApp Tạo và Thiết lập Tags: Tạo ra một Map có tên là productsServiceTags để định nghĩa các tag (nhãn) cho stack và các tài nguyên liên quan. Các tag được lưu trữ dưới dạng cặp key-value trong map. Map\u0026lt;String, String\u0026gt; productsServiceTags = new HashMap\u0026lt;\u0026gt;(); productsServiceTags.put(\u0026#34;team\u0026#34;, \u0026#34;FirstCloudJourney\u0026#34;); productsServiceTags.put(\u0026#34;cost\u0026#34;, \u0026#34;ProductsService\u0026#34;); Tạo Stack ProductsServiceStack ProductsServiceStack productsServiceStack = new ProductsServiceStack(app, \u0026#34;ProductsService\u0026#34;, StackProps.builder() .env(environment) .tags(productsServiceTags) .build(), new ProductsServiceProps( vpcStack.getVpc(), clusterStack.getCluster(), nlbStack.getNetworkLoadBalancer(), nlbStack.getApplicationLoadBalancer(), ecrStack.getProductsServiceRepository())); Thêm Dependency để đảm bảo rằng VPC,Cluster,NLB và ECR được tạo trước khi tạo service productsServiceStack.addDependency(vpcStack); productsServiceStack.addDependency(clusterStack); productsServiceStack.addDependency(nlbStack); productsServiceStack.addDependency(ecrStack); Deloy ProductsService Stack bằng AWS CDK Mở termial và nhập cdk deploy --all --require-approval never Sau khi deploy thành công. Truy cập vào giao diện AWS console. Nhập ECS Trong giao diện ECS ta có thể thấy 1 cluster tên ECommerce đã được tạo cùng với 2 task đang chạy Chọn Cluster ECommerce và sau đó chọn task để xem thông tinh về các task đã tạo "
+},
+{
+	"uri": "//localhost:1313/vi/8-createdynamodb/",
+	"title": "",
+	"tags": [],
+	"description": "",
+	"content": ""
 },
 {
 	"uri": "//localhost:1313/vi/categories/",
