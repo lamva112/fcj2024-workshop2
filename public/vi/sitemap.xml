@@ -30,6 +30,8 @@
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.1-createfirststack/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.1-createdynamo/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.1-createecscluster/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.1-createinfrastructureproject/</loc>
@@ -56,6 +58,8 @@
   </url><url>
     <loc>//localhost:1313/vi/7-createapigateway/7.2-createfirstmethod/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.2-post/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.2-organizestack/</loc>
@@ -65,6 +69,8 @@
     <loc>//localhost:1313/vi/2-prerequiste/2.3-setupintellijidea/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.3-put/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.3-createsericelogdriver/</loc>
   </url><url>
@@ -80,6 +86,8 @@
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.4-createdockerfile/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.4-getbyid/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/4-createvpc/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.4-addservicetotask/</loc>
@@ -88,7 +96,11 @@
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.5-deletebyid/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.5-organizeanddeploystack/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.6-configdynamodb/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/</loc>
   </url><url>
@@ -98,7 +110,11 @@
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.7-createfagateservice/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.7-createcontroller/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.8-configtargergroup/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.9-confignlb/</loc>
   </url><url>
