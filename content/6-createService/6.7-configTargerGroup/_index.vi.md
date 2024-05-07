@@ -1,9 +1,9 @@
 ---
 title : "Cấu hình AWS ALB Target group và cơ chế health check"
 date :  "`r Sys.Date()`" 
-weight : 8
+weight : 7
 chapter : false
-pre : " <b> 6.8 </b> "
+pre : " <b> 6.7 </b> "
 ---
 
 ##### Cầu hình AWS ALB Target group và cơ chế health check

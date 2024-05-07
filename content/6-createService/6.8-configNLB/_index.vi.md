@@ -1,9 +1,9 @@
 ---
 title : "Cấu hình AWS Network Load Balancer"
 date :  "`r Sys.Date()`" 
-weight : 9
+weight : 8
 chapter : false
-pre : " <b> 6.9 </b> "
+pre : " <b> 6.8 </b> "
 ---
 
 #### Tạo NetworkListener

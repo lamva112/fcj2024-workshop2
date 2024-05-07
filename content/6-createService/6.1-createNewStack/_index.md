@@ -1,5 +1,5 @@
 ---
-title: "Create a New Stack for Product Service"
+title: " Create a New Stack for Product Service"
 date: "`r Sys.Date()`"
 weight: 1
 chapter: false

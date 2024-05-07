@@ -1,10 +1,31 @@
 [
 {
+	"uri": "//localhost:1313/6-createservice/6.1-createnewstack/",
+	"title": " Create a New Stack for Product Service",
+	"tags": [],
+	"description": "",
+	"content": "Create a New Stack for Product Service Open your CDK project and create a new stack named ProductsServiceStack. Have ProductsServiceStack inherit from the Stack class from the amazon.awscdk library.\nTo create the ProductsServiceStack, we need to include several dependencies such as VPC, Cluster, NetworkLoadBalancer, ApplicationLoadBalancer, and Repository that were created earlier. Therefore, we need to define a record class named ProductsServiceProps to pass into the ProductsServiceStack. Add the following code snippet outside the ClusterStack class:\nrecord ProductsServiceProps( Vpc vpc, Cluster cluster, NetworkLoadBalancer networkLoadBalancer, ApplicationLoadBalancer applicationLoadBalancer, Repository repository ){} Create a Constructor: public ProductsServiceStack(final Construct scope, final String id, final StackProps props, ProductsServiceProps productsServiceProps) { super(scope, id, props); } "
+},
+{
+	"uri": "//localhost:1313/5-createecs/5.1-createecscluster/",
+	"title": " Create ECS Cluster",
+	"tags": [],
+	"description": "",
+	"content": "Create ECS Cluster stack Open your CDK project and create a new stack named ClusterStack.java.\nTo create the ECS stack, we need the VPC that we previously created. Therefore, we need to create a record class to pass the VPC into the ECS Stack. Add the following code outside the ClusterStack class:\nrecord ClusterStackProps(Vpc vpc) {} Create the cluster property and a getter method within the ClusterStack class:\nprivate final Cluster cluster; public Cluster getCluster() { return cluster; } Create constructor public ClusterStack(final Construct scope, final String id, final StackProps props, ClusterStackProps clusterStackProps) { super(scope, id, props); } Initialize the Cluster object in the constructor of ClusterStack.java using the following code: this.cluster = new Cluster(this, \u0026#34;Cluster\u0026#34;, ClusterProps.builder() .build()); Set the name of the cluster to ECommerce* .clusterName(\u0026#34;ECommerce\u0026#34;) Add VPC to the cluster .vpc(clusterStackProps.vpc()) Finally, set containerInsight to true. .containerInsights(true) Organize ECS stack in CDK project Open the file named Fcj2024CdkApp in the root directory.\nCreate an ECS Stack with the ID Vpc using the following code snippet:\nClusterStack clusterStack = new ClusterStack(app, \u0026#34;Cluster\u0026#34;, StackProps.builder() .build()); Pass the previously created VPC to the ClusterStackProps of the ECS stack: new ClusterStackProps(vpcStack.getVpc()) Add environment and tags to the ECS Stack: .env(environment) .tags(infraTags) Because ECS requires a VPC but we cannot be certain whether the VPC has been created before the ECS, let\u0026rsquo;s add a dependency constraint to ensure that the ECS is only created after the VPC has been successfully created: clusterStack.addDependency(vpcStack); Deploy ECS Cluster using AWS CDK To deploy the ECS cluster, open your terminal and enter the following commands: Deploy all stacks using: cdk deploy --all Alternatively, you can skip the confirmation prompt by using: cdk deploy --all --require-approval never Deploy ECS Cluster using AWS CDK Check the newly created cluster:\nAccess the AWS console, navigate to ECS, and select Elastic Container Service. In the ECS interface, you should see a cluster named ECommerce that has been created.\n"
+},
+{
 	"uri": "//localhost:1313/3-createecr/3.1-createfirststack/",
 	"title": " Create First CloudFormation Stack",
 	"tags": [],
 	"description": "",
 	"content": "Prepare for CDK Project Delete the Fcj2024CdkStack file that was previously created. Remove unnecessary comments from the file. Create a new stack by creating a new Java file named EcrStack.java. Using CDK, you can write code to create stacks and CloudFormation resources. Your code will be compiled into corresponding CloudFormation templates, which can then be deployed by CloudFormation as usual.\nOnce the file is created, have the EcrStack class inherit from the Stack class provided by the AWS CDK library. Create the stack constructor. Create an AWS resource through a repository: First, declare the productsServiceRepository property with the following line:\nprivate final Repository productsServiceRepository; Then initialize the productsServiceRepository property in the constructor:\nthis.productsServiceRepository = new Repository(this, \u0026#34;ProductsService\u0026#34;, RepositoryProps.builder().build()); To initialize the Repository, add the following parameters: this: Refers to the current class object (usually a CDK stack). \u0026ldquo;ProductsService\u0026rdquo;: This is the unique name (ID) of the resource being created. This name must be unique within the scope of a CDK stack. Then create the ECR Repository properties using RepositoryProps.builder().build(): builder() is a static method of the RepositoryProps class to initialize a Builder object. This is a preparation step to set properties for RepositoryProps. The build() method on the Builder object is called to finalize the construction process and return a complete RepositoryProps object with the set properties. Specify the ECR repository name by adding .repositoryName(\u0026quot;productsservice\u0026quot;) before build(). Add .removalPolicy(RemovalPolicy.DESTROY) to ensure that when the CloudFormation stack is deleted, our resources will also be deleted. Allow overriding of images in the ECR repository by enabling IMMUTABLE with imageTagMutability(TagMutability.IMMUTABLE). Enable automatic image deletion when the ECR is deleted by adding autoDeleteImages(true). Create a getter method: public Repository getProductsServiceRepository() { return productsServiceRepository; } "
+},
+{
+	"uri": "//localhost:1313/4-createvpc/4.1-createvpc/",
+	"title": " Create VPC and Nat Gateway",
+	"tags": [],
+	"description": "",
+	"content": "Create VPC and Nat Gateway Open your CDK project and create a new stack named VpcStack.java.\nInherit from Stack from the awscdk library and create a constructor.\nDefine the VPC property and create a getter method.\nAdd the property in the VpcStack.java class: private final Vpc vpc; Then, create a getter method to access this VPC for other resources: public Vpc getVpc() { return vpc; } Initialize the VPC object in the constructor of VpcStack.java with the following code:\nthis.vpc = new Vpc(this, \u0026#34;Vpc\u0026#34;, VpcProps.builder().build()); Next, name the VPC as ECommerceVPC and specify the number of Availability Zones as 2 using the following code:\n.vpcName(\u0026#34;ECommerceVPC\u0026#34;) .maxAzs(2) If you want your VPC to be public and not use a NAT Gateway, you can add the following code:\n.natGateways(0) You may choose not to use a NAT Gateway in a lab environment to save costs, but avoid doing this in a production environment.\n"
 },
 {
 	"uri": "//localhost:1313/2-prerequiste/2.1-createinfrastructureproject/",
@@ -28,11 +49,32 @@
 	"content": "This workshop will cover the following AWS resources and tools: AWS ECS: Elastic Container Service is AWS\u0026rsquo;s container orchestration service. With ECS, you can manage the execution of Docker-based microservices efficiently and at scale. With AWS Fargate, a serverless compute engine for containers from Amazon Web Services, you don\u0026rsquo;t need to provision EC2 instances, reducing the operational cost of container-based applications.\nAWS ECR: With Elastic Container Registry (ECR) from AWS, you can create private repositories to store Docker images of your microservices.\nAWS VPC: With Virtual Private Cloud (VPC) from AWS, you can secure your infrastructure with private subnets and network security policies for inbound and outbound traffic rules.\nAWS ALB: AWS Application Load Balancer allows you to balance HTTP traffic across all available application instances, and with integrated target groups, each instance can be monitored to only receive traffic if it is operating normally.\nAPI Gateway REST: With AWS API Gateway, you can protect your application\u0026rsquo;s REST APIs and perform validation checks on query string parameters and request contents.\nCloudWatch Logs: Its responsibility is to aggregate application logs and their metrics. The applications built in this workshop will log to CloudWatch Logs in JSON format using the log4j2 library. This enables us to insert parameters into the logs for use in queries in the AWS CloudWatch Logs Insights dashboard.\nCloudWatch Alarms: With alarms from CloudWatch, you can monitor unusual events from applications and AWS resources.\nDynamoDB: DynamoDB is a powerful and non-relational NoSQL database service. This workshop introduces the usage of DynamoDB enhanced client from AWS SDK v2 for Java, which is a high-level library allowing client-side class mappings with DynamoDB tables.\nSQS: SQS is a queue service that allows asynchronous communication between applications, facilitating message and event exchanges.\n"
 },
 {
+	"uri": "//localhost:1313/6-createservice/6.2-createectask/",
+	"title": " Create ECS Task Definition",
+	"tags": [],
+	"description": "",
+	"content": "Create ECS Task Definition Initialize a FargateTaskDefinition object within the ProductsServiceStack constructor: FargateTaskDefinition fargateTaskDefinition = new FargateTaskDefinition(this, \u0026#34;TaskDefinition\u0026#34;, FargateTaskDefinitionProps.builder() .build()); Set the family name for the task definition group: .family(\u0026#34;products-service\u0026#34;) Next, define the CPU and memory limits for the task definition: .cpu(512) .memoryLimitMiB(1024) "
+},
+{
+	"uri": "//localhost:1313/5-createecs/5.2-createnlb/",
+	"title": " Create Network Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Create Network Load Balancer stack In your CDK project, create a new stack named NlbStack.java and have the NlbStack class inherit from the Stack class from the amazon.awscdk library.\nTo create the NLB stack, we need the VPC that we created earlier. Therefore, we will create a record class named NlbStackProps to pass the VPC into the NLB Stack. Add the following code outside the ClusterStack class:\nrecord NlbStackProps( Vpc vpc ){} Inside the NLB Stack, we will create Vpc Link, Network Load Balancer, and Application Load Balancer. Therefore, we need to define three attributes corresponding to them: private final VpcLink vpcLink; private final NetworkLoadBalancer networkLoadBalancer; private final ApplicationLoadBalancer applicationLoadBalancer; Next, let\u0026rsquo;s create getters for the three attributes: public VpcLink getVpcLink() { return vpcLink; } public NetworkLoadBalancer getNetworkLoadBalancer() { return networkLoadBalancer; } public ApplicationLoadBalancer getApplicationLoadBalancer() { return applicationLoadBalancer; } Create a constructor for the NlbStack class: public NlbStack(final Construct scope, final String id, final StackProps props, NlbStackProps nlbStackProps) { super(scope, id, props); } Create Network Load Balancer First, let\u0026rsquo;s create a Network Load Balancer (NLB). To do this, we need to initialize the networkLoadBalancer object within the constructor: this.networkLoadBalancer = new NetworkLoadBalancer(this, \u0026#34;Nlb\u0026#34;, NetworkLoadBalancerProps.builder() .build()); Next, set the name of the NLB to ECommerceNlb using: .loadBalancerName(\u0026#34;ECommerceNlb\u0026#34;) As shown in the design diagram, we will not expose the Network Load Balancer (NLB) and Application Load Balancer (ALB) to the internet outside of the VPC. Therefore, we will configure them as follows: .internetFacing(false) .vpc(nlbStackProps.vpc()) "
+},
+{
 	"uri": "//localhost:1313/2-prerequiste/2.2-createspingbootproject/",
 	"title": " Creating a Spring Boot Project",
 	"tags": [],
 	"description": "",
 	"content": "Creating a Spring Boot Project Visit start.spring.io.\nChoose the programming language and framework version:\nFor Project, select Gradle - Groovy. For Language, choose Java. For Spring Boot version, select 3.2.4. Configure Project Metadata:\nSet Group to com.firstcloudjourney. Set Artifact to productsservice. Other fields will be automatically filled. Choose Java version as 21. Add Dependencies:\nClick ADD DEPENDENCIES to open a pop-up. Add Spring Web and Spring Boot Actuator packages. Generate the Spring Boot Project:\nClick GENERATE to download the created project. "
+},
+{
+	"uri": "//localhost:1313/4-createvpc/4.2-orgaizestack/",
+	"title": " Organize and Deploy VPC Stack using AWS CDK",
+	"tags": [],
+	"description": "",
+	"content": "Organize VPC stack in CDK project Open the root file Fcj2024CdkApp.\nCreate a VPC Stack with the ID Vpc using the following code:\nVpcStack vpcStack = new VpcStack(app, \u0026#34;Vpc\u0026#34;, StackProps.builder() .build()); Add environment and Tags\nDeploy VPC stack Open a terminal and run the command cdk list to view the list of available tasks. Here, you will see Ecr and Vpc.\nNext, run cdk deploy --all to deploy all stacks. When prompted about changeset execution policy, enter y.\nReview the changes during deployment. You will see that CDK recognizes that the ECR has not changed and that a new stack for VPC is being created.\nCheck created resources on AWS Console Access the AWS Console, navigate to the VPC interface, and select Your VPCs. You should see ECommerceVPC listed.\nSimilarly, check for Subnets, NAT Gateways, Security Groups, etc.\n"
 },
 {
 	"uri": "//localhost:1313/3-createecr/3.2-organizestack/",
@@ -56,6 +98,20 @@
 	"content": "In this section, we will learn how to create a stack to deploy Amazon ECR on AWS.\n"
 },
 {
+	"uri": "//localhost:1313/6-createservice/6.3-createsericelogdriver/",
+	"title": " Create Service Log Driver",
+	"tags": [],
+	"description": "",
+	"content": "Create Service Log Driver During the development of a Spring Boot application, we need logging for debugging the application. Therefore, we will use CloudWatch Log Groups.\nTo create a log group, first initialize an AwsLogDriver object within the constructor:\nAwsLogDriver logDriver = new AwsLogDriver(AwsLogDriverProps.builder() .build()); Initialize a LogGroup object within the AwsLogDriver: .logGroup(new LogGroup(this, \u0026#34;LogGroup\u0026#34;, LogGroupProps.builder() .build())) Next, we need to add the necessary properties for the LogGroup: Set the log group name to ProductsService: .logGroupName(\u0026#34;ProductsService\u0026#34;) Configure the log group to be deleted when the Stack is deleted: .removalPolicy(RemovalPolicy.DESTROY) Finally, specify how long AWS should retain these logs. Let\u0026rsquo;s retain them for one month: .retention(RetentionDays.ONE_MONTH) Finally, we need to set a prefix for our log files: .streamPrefix(\u0026#34;ProductsService\u0026#34;) "
+},
+{
+	"uri": "//localhost:1313/5-createecs/5.3-createvpclink/",
+	"title": " Create VPC Link",
+	"tags": [],
+	"description": "",
+	"content": "Create VPC Link To create a VPC Link, we need to initialize the vpcLink object that was previously declared: this.vpcLink = new VpcLink(this, \u0026#34;VpcLink\u0026#34;, VpcLinkProps.builder() .build()); Next, we will connect the VPC Link to the Network Load Balancer (NLB) by setting the NLB as the target for the VPC Link: .targets(Collections.singletonList(this.networkLoadBalancer)) "
+},
+{
 	"uri": "//localhost:1313/3-createecr/3.3-implementstack/",
 	"title": " Deploy Stack to AWS ECR",
 	"tags": [],
@@ -70,11 +126,32 @@
 	"content": "Setting Up IntelliJ IDEA Open IntelliJ IDEA and navigate to the Spring Boot project you just created.\nConfigure the project:\nRight-click on the project and select Open Module Settings. Under Project Settings, ensure that your project has SDK set to 21 and language level set to 21.\nUnder Platform Settings, ensure that your platform SDK is set to 21.\nRunning the Spring Boot Project Open the file application.properties and add server.port=8081 to configure the project to run on port 8081.\nClick on the Run icon to run the project. You can see the project running on port 8081.\nTesting the Project with Postman Create an HTTP GET request with the URL http://localhost:8081/actuator/health to test.\nThe response should show \u0026ldquo;status\u0026rdquo;: \u0026ldquo;UP\u0026rdquo; indicating that the project is running normally. Adding the Log4j2 Library Open the build.gradle file:\nIn the dependencies section, add the Log4j2 library with the following code: implementation \u0026#39;org.springframework.boot:spring-boot-starter-log4j2\u0026#39; Add configurations: configurations { configureEach { exclude group: \u0026#39;org.springframework.boot\u0026#39;, module: \u0026#39;spring-boot-starter-logging\u0026#39; exclude group: \u0026#39;commons-logging\u0026#39;, module: \u0026#39;commons-logging\u0026#39; } } Creating a Controller Inside the com.firstcloudjourney.productsservice directory, create a folder named products.\nInside the products folder, create a directory named controllers and create a file named ProductsController.java inside the controllers directory.\nCopy and paste the following code into ProductsController.java:\nimport org.apache.logging.log4j.LogManager; import org.apache.logging.log4j.Logger; import org.springframework.web.bind.annotation.GetMapping; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.web.bind.annotation.RestController; @RestController @RequestMapping(\u0026#34;/api/products\u0026#34;) public class ProductsController { private static final Logger LOG = LogManager.getLogger(ProductsController.class); @GetMapping public String getAllProducts() { LOG.info(\u0026#34;Get all products\u0026#34;); return \u0026#34;All products\u0026#34;; } } Run the project and test with Postman by creating an HTTP GET request with the URL http://localhost:8081/api/products.\nCheck the logs returned in the terminal when making the HTTP GET request.\n"
 },
 {
+	"uri": "//localhost:1313/6-createservice/6.4-addservicetotask/",
+	"title": " Add Container Service to Task Definition",
+	"tags": [],
+	"description": "",
+	"content": "Add Container Service to Task Definition To add a container, use the addContainer method of the previously initialized fargateTaskDefinition: fargateTaskDefinition.addContainer() Specify the ID as ProductsServiceContainer and create ContainerDefinitionOptions: fargateTaskDefinition.addContainer(\u0026#34;ProductsServiceContainer\u0026#34;, ContainerDefinitionOptions.builder() .build()); Thêm image từ ECR Repository với phiên bản 1.0.0 chúng ta đã tạo trước đó\nAdd an image from the ECR Repository with version 1.0.0 that we created earlier:\n.image(ContainerImage.fromEcrRepository(productsServiceProps.repository(), \u0026#34;1.0.0\u0026#34;)) Next, set the name for the container and add the previously created logDriver: .containerName(\u0026#34;productsService\u0026#34;) .logging(logDriver) Since our application uses port 8081, we need to add port mappings for the container service: .portMappings(Collections.singletonList(PortMapping.builder() .containerPort(8081) .protocol(Protocol.TCP) .build())) Next, we need to create environment variables. Its value is a Map\u0026lt;String, String\u0026gt;: First, declare a variable envVariables:\nMap\u0026lt;String, String\u0026gt; envVariables = new HashMap\u0026lt;\u0026gt;(); envVariables.put(\u0026#34;SERVER_PORT\u0026#34;, \u0026#34;8081\u0026#34;); Then, add environment variables to the service container:\n.environment(envVariables) "
+},
+{
+	"uri": "//localhost:1313/5-createecs/5.4-createalb/",
+	"title": " Create Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Create Application Load Balancer First, let\u0026rsquo;s create an Application Load Balancer (ALB). To create the ALB, we need to initialize the applicationLoadBalancer object within the constructor: this.applicationLoadBalancer = new ApplicationLoadBalancer(this, \u0026#34;Alb\u0026#34;, ApplicationLoadBalancerProps.builder() .build()); Next, set the name for the Application Load Balancer (ALB) to ECommerceAlb using: .loadBalancerName(\u0026#34;ECommerceAlb\u0026#34;) As mentioned earlier, we will not expose the Application Load Balancer (ALB) and Network Load Balancer (NLB) to the internet outside of the VPC. Therefore, we will configure them as follows: .internetFacing(false) .vpc(nlbStackProps.vpc()) "
+},
+{
 	"uri": "//localhost:1313/2-prerequiste/2.4-createdockerfile/",
 	"title": " Create Dockerfile and Generate Docker Image",
 	"tags": [],
 	"description": "",
 	"content": "Create Task First, you need to create a task in the build.gradle file by copying the following code block: tasks.register(\u0026#34;unpack\u0026#34;, Copy) { dependsOn bootJar from(zipTree(tasks.bootJar.outputs.files.singleFile)) into(\u0026#34;build/libs\u0026#34;) } This code defines a Gradle task named \u0026ldquo;unpack\u0026rdquo; that copies files from a ZIP archive generated by the \u0026ldquo;bootJar\u0026rdquo; task and extracts them into the \u0026ldquo;build/libs\u0026rdquo; directory.\nCreate .dockerignore File Create a .dockerignore file to specify files and directories that Docker should ignore when building a Docker image from your project components. Copy the code below: .git .gitignore .dockerignore .gradle .idea Dockerfile README.md Create file Dockerfile Create a Dockerfile and copy the code below: FROM eclipse-temurin:21-jdk-alpine VOLUME /tmp ARG DEPENDENCY=build/libs COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib COPY ${DEPENDENCY}/META-INF /app/META-INF COPY ${DEPENDENCY}/BOOT-INF/classes /app EXPOSE 8081 ENTRYPOINT [\u0026#34;java\u0026#34;, \u0026#34;-cp\u0026#34;, \u0026#34;app:app/lib/*\u0026#34;, \u0026#34;com.firstcloudjourney.productsservice.ProductsserviceApplication\u0026#34;] Generate Docker Image Next, let\u0026rsquo;s configure IntelliJ to generate a Docker image: Click on the Run icon and select New Run Configuration. A popup will appear where we\u0026rsquo;ll configure as follows: For Image Tag, enter productsservice:1.0.0. Click Modify Options, then select Build options. Once Build options appears, enter --platform linux/amd64. Next, we need to configure Before Launch: Click the + icon and select Run Gradle Task. Then a popup will appear as shown below: In the popup for Select Gradle Task: For Gradle project, choose productsservice. For Task, select the unpack task that we added earlier. Click OK. After returning to the Edit Configuration popup, click Apply. Build Application using BootJar Next, let\u0026rsquo;s build the application using bootJar from Gradle: Click on the Gradle icon. Choose Tasks, then build, and finally click bootJar to build the application. Check the built application file located in build/libs. Generate Docker Image Now, let\u0026rsquo;s create a Docker image from the built application: Click on the Run icon on the Dockerfile and choose Build image for \u0026lsquo;DockerFile\u0026rsquo;. Make sure you have Docker Desktop running to successfully build the image.\nAfter successfully creating the image, you should see productsservice:1.0.0 generated. "
+},
+{
+	"uri": "//localhost:1313/4-createvpc/",
+	"title": " Create VPC and NAT Gateway using AWS CDK",
+	"tags": [],
+	"description": "",
+	"content": "In this section, we will create a VPC and NAT Gateway using AWS CDK.\n"
 },
 {
 	"uri": "//localhost:1313/3-createecr/3.4-pushimage/",
@@ -84,11 +161,39 @@
 	"content": "Push Docker image to ECR repository Ensure you have installed the AWS Toolkit. If not, go to IntelliJ IDEA Settings, select Plugins, and search for AWS Toolkit to install it.\nClick on the AWS Toolkit icon on the right side of IntelliJ IDEA.\nSelect profile and region:\nFor Profile, choose default. For Region, choose ap-southeast-1. Open the Explorer to view all AWS Toolkit-supported services, then select ECR.\nRight-click on the productsservice repository and choose Push to Repository\u0026hellip; to push the Docker image.\nIn the Push to ECR popup:\nFor Local Image, select productsservice:1.0.0. For ECR Repository, choose productsservice. For Remote Tag, enter 1.0.0. Finally, click Push. Check the image on ECR In the AWS Management Console, navigate to ECR.\nSelect the productsservice repository to view the Docker image version 1.0.0 that has been pushed.\n"
 },
 {
+	"uri": "//localhost:1313/5-createecs/5.5-organizeanddeploystack/",
+	"title": " Organize and Deploy NLB Stack",
+	"tags": [],
+	"description": "",
+	"content": "Organize and Deploy NLB Stack Open the root file Fcj2024CdkApp.\nCreate an NLB Stack with the ID Nlb using the following code:\nNlbStack nlbStack = new NlbStack(app, \u0026#34;Nlb\u0026#34;, StackProps.builder() .build()); Pass the previously created VPC to the ClusterStackProps of the ECS stack: new ClusterStackProps(vpcStack.getVpc()) Add environmen and Tags for NLB Stack .env(environment) .tags(infraTags) Because the Network Load Balancer (NLB) requires a VPC to be created, let\u0026rsquo;s add a dependency to ensure that the VPC is created before the NLB: nlbStack.addDependency(vpcStack); Deploy NLB using AWS CDK Deploy the Network Load Balancer (NLB) using AWS CDK: cdk deploy --all --require-approval never Check AWS Resources Created In the AWS Management Console, navigate to EC2.\nIn the EC2 interface, select Load Balancers to view the created Network Load Balancer (NLB) and Application Load Balancer (ALB).\nIn the EC2 interface, enter \u0026ldquo;API Gateway\u0026rdquo; into the search bar and select API Gateway from the results.\nIn the API Gateway interface, select VPC links to view the successfully created VPC link.\n"
+},
+{
 	"uri": "//localhost:1313/2-prerequiste/2.5-rundockerlocal/",
 	"title": " Run Docker Image on Local Machine",
 	"tags": [],
 	"description": "",
 	"content": "Run Docker Image on Local Machine Right-click on the productsservice:1.0.0 image we created earlier and select Create Container. A Docker image configuration popup will appear. Choose Run and the terminal will execute. Configure the Docker container:\nIn the Services interface, select the Dashboard tab and then click Add under Ports. A Port bindings popup will appear. Click Modify Options, then select Host IP. Enter 0.0.0.0 for the Host IP. Similarly, configure Host Port as 8081 and Protocol as TCP. For \u0026ndash;publish, enter 8081 and select Recreate container. Test Application on Postman Run the project and test on Postman by creating an HTTP GET request with the URL http://localhost:8081/api/products. "
+},
+{
+	"uri": "//localhost:1313/5-createecs/",
+	"title": "Create ECS using AWS CDK",
+	"tags": [],
+	"description": "",
+	"content": "In this section, we will create an ECS cluster, ECS infrastructure, and ECS service. "
+},
+{
+	"uri": "//localhost:1313/6-createservice/6.5-addlistenteralb/",
+	"title": " Add Listener to Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Add Listener to Application Load Balancer Initialize an ApplicationListener: ApplicationListener applicationListener = productsServiceProps.applicationLoadBalancer(); Add a listener with the ID ProductsServiceAlbListener and initialize ApplicationListenerProps: .addListener(\u0026#34;ProductsServiceAlbListener\u0026#34;, ApplicationListenerProps.builder() .build()); Next, configure the ALB listener on port 8081 using the HTTP protocol: .port(8081) .protocol(ApplicationProtocol.HTTP) Finally, add the applicationListener to the Application Load Balancer: .loadBalancer(productsServiceProps.applicationLoadBalancer()) "
+},
+{
+	"uri": "//localhost:1313/6-createservice/",
+	"title": "Create ECS Service with CDK",
+	"tags": [],
+	"description": "",
+	"content": "In this section, we will create an ECS Service using CDK. In this workshop, we will create the ProductService. "
 },
 {
 	"uri": "//localhost:1313/categories/",

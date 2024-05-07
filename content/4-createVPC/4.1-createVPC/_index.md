@@ -6,7 +6,7 @@ chapter: false
 pre: "<b>4.1</b>"
 ---
 
-#### Create VPC and Nat Gateway
+#### Create VPC and NAT Gateway
 
 1. Open your CDK project and create a new stack named **VpcStack.java**.
 

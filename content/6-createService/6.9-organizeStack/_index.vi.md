@@ -1,9 +1,9 @@
 ---
 title : "Tổ chức và deploy Stack"
 date :  "`r Sys.Date()`" 
-weight : 10
+weight : 9
 chapter : false
-pre : " <b> 6.10 </b> "
+pre : " <b> 6.9 </b> "
 ---
 
 #### Tổ chức ProductsServiceStack Stack

@@ -46,7 +46,7 @@
 	"title": "Tạo ECS cluster",
 	"tags": [],
 	"description": "",
-	"content": "Tạo ECS Cluster stack Mở CDK project tạo stack mới với tên là ClusterStack.java Để tạo ECS stack chúng ta cần VPC mà chúng ta đã tạo trước đó. Nên chúng ta cần tạo 1 record class để truyền VPC vào ECS Stack. Thêm đoạn code bên ngoài class ClusterStack record ClusterStackProps( Vpc vpc ){} Tạo thuộc tính cluster và phương thức getter private final Cluster cluster; public Cluster getCluster() { return cluster; } Tạo constructor public ClusterStack(final Construct scope, final String id, final StackProps props, ClusterStackProps clusterStackProps) { super(scope, id, props); } Khởi tạo đối tượng VPC bằng đoạn code sau trong contructor this.cluster = new Cluster(this, \u0026#34;Cluster\u0026#34;, ClusterProps.builder() .build()); Thêm tên của cluster là ECommerce .clusterName(\u0026#34;ECommerce\u0026#34;) Thêm VPC vào cluster .vpc(clusterStackProps.vpc()) Cuối cùng là set containerInsight bằng true .containerInsights(true) Tổ chức ECS stack in CDK project Mở file root Fcj2024CdkApp Tạo ECS Stack với id là Vpc bằng đoạn code ClusterStack clusterStack = new ClusterStack(app, \u0026#34;Cluster\u0026#34;, StackProps.builder() .build()); Truyền VPC đã tạo trước đó cho ClusterStackProps của ECS stack new ClusterStackProps(vpcStack.getVpc()) Thêm Thêm environmen* và Tags cho ECS Stack .env(environment) .tags(infraTags) Bởi vì ECS cần có VPC nhưng chúng ta không thể biết chắc chắn rằng VPC có được tạo trước CES hay không. Vì vậy hãy thêm một ràng buộc là khi nào việc tạo VPC hoàn thành rồi ECS mới được tạo bằng cách clusterStack.addDependency(vpcStack); Deloy Ecs cluster bằng AWS CDK Để deloy ecs cluster, mở terminal và nhập Ta có thể deploy tất cả các stack bằng cdk deploy --all Ngoài ra chúng ta có thể bỏ qua bước confirm bằng cách cdk deploy --all --require-approval never Deloy Ecs cluster bằng AWS CDK Kiểm tra cluster vừa tạo Truy cập vào AWS console, Nhập ECS, chọn Elastic Container Service\nTrong giao diện ECS, ta có thể thấy 1 cluster tên ECommerce đã được tạo "
+	"content": "Tạo ECS Cluster stack Mở CDK project tạo stack mới với tên là ClusterStack.java Để tạo ECS stack chúng ta cần VPC mà chúng ta đã tạo trước đó. Nên chúng ta cần tạo 1 record class để truyền VPC vào ECS Stack. Thêm đoạn code bên ngoài class ClusterStack record ClusterStackProps( Vpc vpc ){} Tạo thuộc tính cluster và phương thức getter private final Cluster cluster; public Cluster getCluster() { return cluster; } Tạo constructor public ClusterStack(final Construct scope, final String id, final StackProps props, ClusterStackProps clusterStackProps) { super(scope, id, props); } Khởi tạo đối tượng VPC bằng đoạn code sau trong contructor this.cluster = new Cluster(this, \u0026#34;Cluster\u0026#34;, ClusterProps.builder() .build()); Thêm tên của cluster là ECommerce .clusterName(\u0026#34;ECommerce\u0026#34;) Thêm VPC vào cluster .vpc(clusterStackProps.vpc()) Cuối cùng là set containerInsight bằng true .containerInsights(true) Tổ chức ECS stack in CDK project Mở file root Fcj2024CdkApp Tạo ECS Stack với id là Vpc bằng đoạn code ClusterStack clusterStack = new ClusterStack(app, \u0026#34;Cluster\u0026#34;, StackProps.builder() .build()); Truyền VPC đã tạo trước đó cho ClusterStackProps của ECS stack new ClusterStackProps(vpcStack.getVpc()) Thêm environmen* và Tags cho ECS Stack .env(environment) .tags(infraTags) Bởi vì ECS cần có VPC nhưng chúng ta không thể biết chắc chắn rằng VPC có được tạo trước CES hay không. Vì vậy hãy thêm một ràng buộc là khi nào việc tạo VPC hoàn thành rồi ECS mới được tạo bằng cách clusterStack.addDependency(vpcStack); Deloy Ecs cluster bằng AWS CDK Để deloy ecs cluster, mở terminal và nhập Ta có thể deploy tất cả các stack bằng cdk deploy --all Ngoài ra chúng ta có thể bỏ qua bước confirm bằng cách cdk deploy --all --require-approval never Deloy Ecs cluster bằng AWS CDK Kiểm tra cluster vừa tạo Truy cập vào AWS console, Nhập ECS, chọn Elastic Container Service\nTrong giao diện ECS, ta có thể thấy 1 cluster tên ECommerce đã được tạo "
 },
 {
 	"uri": "//localhost:1313/vi/2-prerequiste/2.1-createinfrastructureproject/",
@@ -172,7 +172,7 @@
 	"title": "Tạo VPC Link",
 	"tags": [],
 	"description": "",
-	"content": "Tạo VPC link Để tạo VPC link chúng ta cần khởi tạo đối tượng vpcLink đã khai báo trước đó this.vpcLink = new VpcLink(this, \u0026#34;VpcLink\u0026#34;, VpcLinkProps.builder() .build()); Tiếp theo chúng ta sẽ kết nối PVC Link với Network Load Balancer tạo 1 target cho .targets(Collections.singletonList(this.networkLoadBalancer)) "
+	"content": "Tạo VPC link Để tạo VPC link chúng ta cần khởi tạo đối tượng vpcLink đã khai báo trước đó this.vpcLink = new VpcLink(this, \u0026#34;VpcLink\u0026#34;, VpcLinkProps.builder() .build()); Tiếp theo chúng ta sẽ kết nối PVC Link với Network Load Balancer tạo 1 target đến NLB .targets(Collections.singletonList(this.networkLoadBalancer)) "
 },
 {
 	"uri": "//localhost:1313/vi/9-intrumentingecs/9.3-addxraytotask/",
@@ -194,6 +194,13 @@
 	"tags": [],
 	"description": "",
 	"content": "Push Docker image lên ECR repository Hãy đảm bảo là bạn đã cài AWS toolkit. Nếu chưa vào IntelliJ IDEA setting chọn plugins và tìm AWS toolkit để cài đặt Chọn biểu tưởng AWS toolkit bên phải phần mềm IntelliJ IDEA Chọn profile và region Với profile chọn defautl Region chọn ap-southeast-1 Chọn Exploxer để xem tất cả dịch vụ AWS toolkit hỗ trợ sau đó chọn ECR Ta có thể thấy có 2 repository chúng ta sẽ push docker image lên productsservice repository bằng cách lick phải vào productsservice và chọn push to Repository\u0026hellip; Pop up Push to ECR hiện lên Với local image chọn productsservice:1.0.0 Với ECR Repository chọn productsservice Với Remote Tag nhập 1.0.0 Cuối cùng chọn Push Kiểm tra image trên ECR Trong giao diện AWS console truy cập vào ECR Chọn productsservice Repository ta có thể thấy docker image phiên bản 1.0.0 đã được push lên "
+},
+{
+	"uri": "//localhost:1313/vi/6-createservice/6.4-addservicetotask/",
+	"title": " Thêm container service vào task definition",
+	"tags": [],
+	"description": "",
+	"content": "Thêm container service vào task definition Để thêm container phương thức addContainer của fargateTaskDefinition đã khởi tạo trước đó fargateTaskDefinition.addContainer() Thêm id là ProductsServiceContainer và tạo ContainerDefinitionOptions fargateTaskDefinition.addContainer(\u0026#34;ProductsServiceContainer\u0026#34;, ContainerDefinitionOptions.builder() .build()); Thêm image từ ECR Repository với phiên bản 1.0.0 chúng ta đã tạo trước đó .image(ContainerImage.fromEcrRepository(productsServiceProps.repository(), \u0026#34;1.0.0\u0026#34;)) Tiếp theo ta cần đặt tên cho Container và là thêm logDriver đã tạo trước đó .containerName(\u0026#34;productsService\u0026#34;) .logging(logDriver) Bời vì ứng dụng của chúng ta sử dũng port 8081, do đó chúng ta cần thêm port cho container service .portMappings(Collections.singletonList(PortMapping.builder() .containerPort(8081) .protocol(Protocol.TCP) .build())) Tiếp theo chúng ta cần tạo environtment. Giá trị của nó là một Map\u0026lt;String, String\u0026gt; Trước tiên chúng ta cần khai báo 1 biến envVariables Map\u0026lt;String, String\u0026gt; envVariables = new HashMap\u0026lt;\u0026gt;(); envVariables.put(\u0026#34;SERVER_PORT\u0026#34;, \u0026#34;8081\u0026#34;); Tiếp theo thêm environment cho service container .environment(envVariables) "
 },
 {
 	"uri": "//localhost:1313/vi/5-createecs/5.4-createalb/",
@@ -231,13 +238,6 @@
 	"content": "Testing the implementation Quay trở là productsservice project. Đóng gói project bằng jar trong Grade Mở DockerFile và tạo image tag là productsservice:1.3.0 Sau khi hoàn thành buid Docker Image. Push nó lên ECR Repository với Remote Tag là 1.3.0 Trở lại FCJ2024_CDK project thay đổi image tag của fargateTaskDefinition.addContainer là 1.3.0 Deploy service bằng dòng lệnh cdk deploy --all --require-approval never Sau khi hoành thành deploy. Chúng ta truy cập vào giao diện ECS chọn Task. Sau đó chọn 1 task bất kỳ trong 2 task đang chạy. Trong giao diện task vừa được chọn. Ta có thể thấy một container phụ (sidecar) tên XRayProductsService đang chạy cùng với productsService container Tiếp theo chúng ta sẽ test API trên postman để kiểm tra Đo lường dịch vụ AWS ECS trên AWS X-ray Truy cập vào giao diện CloudWatch chọn Trace Map để xem được đường đi của request Cuối cùng để xem thông tin do lường của ECS chúng ta chọn biểu tượng ECS trên trace map Tượng tự với DynamoDB "
 },
 {
-	"uri": "//localhost:1313/vi/6-createservice/6.4-addservicetotask/",
-	"title": "Thêm container service vào task definition",
-	"tags": [],
-	"description": "",
-	"content": "Thêm container service vào task definition Để thêm container phương thức addContainer của fargateTaskDefinition đã khởi tạo trước đó fargateTaskDefinition.addContainer() Thêm id là ProductsServiceContainer và tạo ContainerDefinitionOptions fargateTaskDefinition.addContainer(\u0026#34;ProductsServiceContainer\u0026#34;, ContainerDefinitionOptions.builder() .build()); Thêm image từ ECR Repository với phiên bản 1.0.0 chúng ta đã tạo trước đó .image(ContainerImage.fromEcrRepository(productsServiceProps.repository(), \u0026#34;1.0.0\u0026#34;)) Tiếp theo ta cần đặt tên cho Container và là thêm logDriver đã tạo trước đó .containerName(\u0026#34;productsService\u0026#34;) .logging(logDriver) Bời vì ứng dụng của chúng ta sử dũng port 8081, do đó chúng ta cần thêm port cho container service .portMappings(Collections.singletonList(PortMapping.builder() .containerPort(8081) .protocol(Protocol.TCP) .build())) Tiếp theo chúng ta cần tạo environtment. Giá trị của nó là một Map\u0026lt;String, String\u0026gt; Trước tiên chúng ta cần khai báo 1 biến envVariables Map\u0026lt;String, String\u0026gt; envVariables = new HashMap\u0026lt;\u0026gt;(); envVariables.put(\u0026#34;SERVER_PORT\u0026#34;, \u0026#34;8081\u0026#34;); Tiếp theo thêm environment cho service container .environment(envVariables) "
-},
-{
 	"uri": "//localhost:1313/vi/2-prerequiste/2.5-rundockerlocal/",
 	"title": "Chạy Docker image trên máy local",
 	"tags": [],
@@ -259,11 +259,18 @@
 	"content": "Tạo REST operation để DELETE product bằng ID Chúng ta có thể tạo nhanh DELETE method bằng ID bằng cách copy lại PUT method đã tạo và thay PUT bằng DELETE productIdResource.addMethod(\u0026#34;DELETE\u0026#34;, new Integration( IntegrationProps.builder() .type(IntegrationType.HTTP_PROXY) .integrationHttpMethod(\u0026#34;DELETE\u0026#34;) .uri(\u0026#34;http://\u0026#34; + apiStackProps.networkLoadBalancer().getLoadBalancerDnsName() + \u0026#34;:8080/api/products/{id}\u0026#34;) .options(IntegrationOptions.builder() .vpcLink(apiStackProps.vpcLink()) .connectionType(ConnectionType.VPC_LINK) .requestParameters(productIdIntegrationParameters) .build()) .build()), MethodOptions.builder() .requestParameters(productIdMethodParameters) .build()); "
 },
 {
+	"uri": "//localhost:1313/vi/6-createservice/6.5-addlistenteralb/",
+	"title": "Thêm Listener vào Application Load Balancer",
+	"tags": [],
+	"description": "",
+	"content": "Thêm Listener vào Application Load Balancer Khởi tạo ApplicationListener ApplicationListener applicationListener = productsServiceProps.applicationLoadBalancer() Thêm 1 listener với id là ProductsServiceAlbListener và khởi tạo ApplicationListenerProps .addListener(\u0026#34;ProductsServiceAlbListener\u0026#34;, ApplicationListenerProps.builder() .build()); Tiếp theo cho ta sẽ cho ALB listener trên port 8081 và sử dụng giao thức HTTP .port(8081) .protocol(ApplicationProtocol.HTTP) Cuối cùng thêm applicationListener vào Application Load Balancer .loadBalancer(productsServiceProps.applicationLoadBalancer()) "
+},
+{
 	"uri": "//localhost:1313/vi/5-createecs/5.5-organizeanddeploystack/",
 	"title": "Tổ chức và deploy NLB Stack",
 	"tags": [],
 	"description": "",
-	"content": "Tổ chức và deploy NLB Stack Mở file root Fcj2024CdkApp Tạo NLB Stack với id là Nlb bằng đoạn code NlbStack nlbStack = new NlbStack(app, \u0026#34;Nlb\u0026#34;, StackProps.builder() .build(),); Truyền VPC đã tạo trước đó cho ClusterStackProps của ECS stack new NlbStackProps(vpcStack.getVpc()) Thêm Thêm environmen* và Tags cho NLB Stack .env(environment) .tags(infraTags) Vì NLB cần có VPC để tạo. Hãy thêm phụ thuộc để đảm bảo rằng VPC được tạo hoàn thành trước khi tạo NLB nlbStack.addDependency(vpcStack); Deloy NLB bằng AWS CDK Deploy NLB bằng AWS CDK cdk deploy --all --require-approval never Kiểm ta AWS resource đã tạo Trong giao diện AWS console nhập EC2 Trong giao diện EC2 chọn Load balancers ta có thể thấy NLB và ALB đã được tạo Trong giao diện EC2. Nhập API gateway vào than tìm kiếm và chọn API Gateway Trong gia diện API Gateway chọn VPC links ta có thể thấy VPC link đã được tạo thành công "
+	"content": "Tổ chức và deploy NLB Stack Mở file root Fcj2024CdkApp Tạo NLB Stack với id là Nlb bằng đoạn code NlbStack nlbStack = new NlbStack(app, \u0026#34;Nlb\u0026#34;, StackProps.builder() .build(),); Truyền VPC đã tạo trước đó cho ClusterStackProps của ECS stack new NlbStackProps(vpcStack.getVpc()) Thêm environmen và Tags cho NLB Stack .env(environment) .tags(infraTags) Vì NLB cần có VPC để tạo. Hãy thêm phụ thuộc để đảm bảo rằng VPC được tạo hoàn thành trước khi tạo NLB nlbStack.addDependency(vpcStack); Deloy NLB bằng AWS CDK Deploy NLB bằng AWS CDK cdk deploy --all --require-approval never Kiểm ta AWS resource đã tạo Trong giao diện AWS console nhập EC2 Trong giao diện EC2 chọn Load balancers ta có thể thấy NLB và ALB đã được tạo Trong giao diện EC2. Nhập API gateway vào than tìm kiếm và chọn API Gateway Trong gia diện API Gateway chọn VPC links ta có thể thấy VPC link đã được tạo thành công "
 },
 {
 	"uri": "//localhost:1313/vi/8-createdynamodb/8.6-configdynamodb/",
@@ -278,13 +285,6 @@
 	"tags": [],
 	"description": "",
 	"content": "Trong phần này chúng ta sẽ tạo ECS Service bằng CDK. Trong workshop này chúng ta sẽ tạo ProductService "
-},
-{
-	"uri": "//localhost:1313/vi/6-createservice/6.5-addlistenteralb/",
-	"title": "Thêm Listener vào Application Load Balancer",
-	"tags": [],
-	"description": "",
-	"content": "Thêm Listener vào Application Load Balancer Khởi tạo ApplicationListener ApplicationListener applicationListener = productsServiceProps.applicationLoadBalancer() Thêm 1 listener với id là ProductsServiceAlbListener và khởi tạo ApplicationListenerProps .addListener(\u0026#34;ProductsServiceAlbListener\u0026#34;, ApplicationListenerProps.builder() .build()); Tiếp theo cho ta sẽ cho ALB listener trên port 8081 và sử dụng giao thức HTTP .port(8081) .protocol(ApplicationProtocol.HTTP) Cuối cùng thêm applicationListener vào Application Load Balancer .loadBalancer(productsServiceProps.applicationLoadBalancer()) "
 },
 {
 	"uri": "//localhost:1313/vi/7-createapigateway/",
