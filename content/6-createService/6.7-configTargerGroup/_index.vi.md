@@ -69,3 +69,4 @@ applicationListener.addTargets("ProductsServiceAlbTarget",
 
 8. Cuối cùng chúng ta sẽ khai báo đường dẫn(endpoint) được sử dụng để kiểm tra sức khỏe của các target là **```/actuator/health```** và port 8081 được sử dụng trong health check để giao tiếp với các target
 
+![Architect](/images/6/configTarget/08.png?featherlight=false&width=60pc)

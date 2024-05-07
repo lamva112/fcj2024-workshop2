@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="vi" class="js csstransforms3d">
+<html lang="en" class="js csstransforms3d">
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title>Tạo ECS task definition :: Bắt đầu với Amazon VPC và AWS VPN Site to Site</title>
+    <title> Configure AWS ALB Target Group and Health Check Mechanism :: Start with Amazon VPC and AWS VPN Site-to-Site.</title>
 
     
     <link href="/css/nucleus.css?1715085524" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/vi/6-createservice/6.2-createectask/">
+  <body class="" data-url="/6-createservice/6.7-configtargergroup/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -61,7 +61,7 @@
 <script type="text/javascript" src="/js/auto-complete.js?1715085524"></script>
 <script type="text/javascript">
     
-        var baseurl = "\/\/localhost:1313\/\/vi";
+        var baseurl = "\/\/localhost:1313\/";
     
 </script>
 <script type="text/javascript" src="/js/search.js?1715085524"></script>
@@ -82,13 +82,13 @@
  
   
     
-    <li data-nav-id="/vi/1-introduce/" title="Giới thiệu" class="dd-item 
+    <li data-nav-id="/1-introduce/" title="Introduction" class="dd-item 
         
         
         
         ">
-      <a href="/vi/1-introduce/">
-           <b> 1. </b> Giới thiệu
+      <a href="/1-introduce/">
+          <b>1.</b>Introduction
           
             <i class="fas fa-check read-icon"></i>
           
@@ -108,13 +108,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/" title="Các bước chuẩn bị" class="dd-item 
+    <li data-nav-id="/2-prerequiste/" title="Preparation Steps" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/">
-           <b> 2. </b> Các bước chuẩn bị
+      <a href="/2-prerequiste/">
+          <b>2.</b>Preparation Steps
           
             <i class="fas fa-check read-icon"></i>
           
@@ -139,13 +139,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.1-createinfrastructureproject/" title="Tạo infrastructure project with AWS CDK" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.1-createinfrastructureproject/" title=" Creating an Infrastructure Project with AWS CDK" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.1-createinfrastructureproject/">
-           <b> 2.1 </b> Tạo infrastructure project with AWS CDK
+      <a href="/2-prerequiste/2.1-createinfrastructureproject/">
+          <b>2.1</b> Creating an Infrastructure Project with AWS CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -167,13 +167,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.2-createspingbootproject/" title="Tạo Spring Boot project" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.2-createspingbootproject/" title=" Creating a Spring Boot Project" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.2-createspingbootproject/">
-           <b> 2.2 </b> Tạo Spring Boot project
+      <a href="/2-prerequiste/2.2-createspingbootproject/">
+          <b>2.2</b> Creating a Spring Boot Project
           
             <i class="fas fa-check read-icon"></i>
           
@@ -195,13 +195,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.3-setupintellijidea/" title="Chuẩn bị IntelliJ IDEA" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.3-setupintellijidea/" title=" Setting Up IntelliJ IDEA" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.3-setupintellijidea/">
-           <b> 2.3 </b> Chuẩn bị IntelliJ IDEA
+      <a href="/2-prerequiste/2.3-setupintellijidea/">
+          <b>2.3</b> Setting Up IntelliJ IDEA
           
             <i class="fas fa-check read-icon"></i>
           
@@ -223,13 +223,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.4-createdockerfile/" title="Tạo Dockerfile và generate docker image" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.4-createdockerfile/" title=" Create Dockerfile and Generate Docker Image" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.4-createdockerfile/">
-           <b> 2.4 </b> Tạo Dockerfile và generate docker image
+      <a href="/2-prerequiste/2.4-createdockerfile/">
+          <b>2.4</b> Create Dockerfile and Generate Docker Image
           
             <i class="fas fa-check read-icon"></i>
           
@@ -251,13 +251,13 @@
  
   
     
-    <li data-nav-id="/vi/2-prerequiste/2.5-rundockerlocal/" title="Chạy Docker image trên máy local" class="dd-item 
+    <li data-nav-id="/2-prerequiste/2.5-rundockerlocal/" title=" Run Docker Image on Local Machine" class="dd-item 
         
         
         
         ">
-      <a href="/vi/2-prerequiste/2.5-rundockerlocal/">
-           <b> 2.5 </b> Chạy Docker image trên máy local
+      <a href="/2-prerequiste/2.5-rundockerlocal/">
+          <b>2.5</b> Run Docker Image on Local Machine
           
             <i class="fas fa-check read-icon"></i>
           
@@ -286,13 +286,13 @@
  
   
     
-    <li data-nav-id="/vi/3-createecr/" title="Tạo AWS ECR image repository bằng AWS CDK" class="dd-item 
+    <li data-nav-id="/3-createecr/" title=" Create AWS ECR Image Repository using AWS CDK" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-createecr/">
-           <b> 3. </b> Tạo AWS ECR image repository bằng AWS CDK
+      <a href="/3-createecr/">
+          <b>3.</b> Create AWS ECR Image Repository using AWS CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -317,13 +317,13 @@
  
   
     
-    <li data-nav-id="/vi/3-createecr/3.1-createfirststack/" title="Tạo cloudformation stack đầu tiên" class="dd-item 
+    <li data-nav-id="/3-createecr/3.1-createfirststack/" title=" Create First CloudFormation Stack" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-createecr/3.1-createfirststack/">
-           <b> 3.1 </b> Tạo cloudformation stack đầu tiên
+      <a href="/3-createecr/3.1-createfirststack/">
+          <b>3.1</b> Create First CloudFormation Stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -345,13 +345,13 @@
  
   
     
-    <li data-nav-id="/vi/3-createecr/3.2-organizestack/" title="Tổ chức CDK stack in CDK project" class="dd-item 
+    <li data-nav-id="/3-createecr/3.2-organizestack/" title=" Organize CDK Stack in CDK Project" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-createecr/3.2-organizestack/">
-           <b> 3.2 </b> Tổ chức CDK stack in CDK project
+      <a href="/3-createecr/3.2-organizestack/">
+          <b>3.2</b> Organize CDK Stack in CDK Project
           
             <i class="fas fa-check read-icon"></i>
           
@@ -373,13 +373,13 @@
  
   
     
-    <li data-nav-id="/vi/3-createecr/3.3-implementstack/" title=" Triển khai Stack lên AWS ECR" class="dd-item 
+    <li data-nav-id="/3-createecr/3.3-implementstack/" title=" Deploy Stack to AWS ECR" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-createecr/3.3-implementstack/">
-           <b> 3.3 </b>  Triển khai Stack lên AWS ECR
+      <a href="/3-createecr/3.3-implementstack/">
+          <b>3.3</b> Deploy Stack to AWS ECR
           
             <i class="fas fa-check read-icon"></i>
           
@@ -401,13 +401,13 @@
  
   
     
-    <li data-nav-id="/vi/3-createecr/3.4-pushimage/" title=" Push Docker image lên ECR" class="dd-item 
+    <li data-nav-id="/3-createecr/3.4-pushimage/" title=" Push Docker image to ECR" class="dd-item 
         
         
         
         ">
-      <a href="/vi/3-createecr/3.4-pushimage/">
-           <b> 3.4 </b>  Push Docker image lên ECR
+      <a href="/3-createecr/3.4-pushimage/">
+          <b>3.4</b> Push Docker image to ECR
           
             <i class="fas fa-check read-icon"></i>
           
@@ -436,13 +436,13 @@
  
   
     
-    <li data-nav-id="/vi/4-createvpc/" title="Tạo VPC và NAT gateway bằng cách sử dụng AWS CDK" class="dd-item 
+    <li data-nav-id="/4-createvpc/" title=" Create VPC and NAT Gateway using AWS CDK" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-createvpc/">
-           <b> 4. </b> Tạo VPC và NAT gateway bằng cách sử dụng AWS CDK
+      <a href="/4-createvpc/">
+          <b>4.</b> Create VPC and NAT Gateway using AWS CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -467,13 +467,13 @@
  
   
     
-    <li data-nav-id="/vi/4-createvpc/4.1-createvpc/" title="Tạo VPC và Nat gateway" class="dd-item 
+    <li data-nav-id="/4-createvpc/4.1-createvpc/" title=" Create VPC and Nat Gateway" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-createvpc/4.1-createvpc/">
-           <b> 4.1 </b> Tạo VPC và Nat gateway
+      <a href="/4-createvpc/4.1-createvpc/">
+          <b>4.1</b> Create VPC and Nat Gateway
           
             <i class="fas fa-check read-icon"></i>
           
@@ -495,13 +495,13 @@
  
   
     
-    <li data-nav-id="/vi/4-createvpc/4.2-orgaizestack/" title="Tổ chức và deploy VPC stack sử dụng AWS CDK" class="dd-item 
+    <li data-nav-id="/4-createvpc/4.2-orgaizestack/" title=" Organize and Deploy VPC Stack using AWS CDK" class="dd-item 
         
         
         
         ">
-      <a href="/vi/4-createvpc/4.2-orgaizestack/">
-           <b> 4.2 </b> Tổ chức và deploy VPC stack sử dụng AWS CDK
+      <a href="/4-createvpc/4.2-orgaizestack/">
+          <b>4.2</b> Organize and Deploy VPC Stack using AWS CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -530,13 +530,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/" title="Tạo ECS bằng cách sử dụng AWS CDK" class="dd-item 
+    <li data-nav-id="/5-createecs/" title="Create ECS using AWS CDK" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/">
-           <b> 5. </b> Tạo ECS bằng cách sử dụng AWS CDK
+      <a href="/5-createecs/">
+          <b>5.</b>Create ECS using AWS CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -561,13 +561,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/5.1-createecscluster/" title="Tạo ECS cluster" class="dd-item 
+    <li data-nav-id="/5-createecs/5.1-createecscluster/" title=" Create ECS Cluster" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/5.1-createecscluster/">
-           <b> 5.1 </b> Tạo ECS cluster
+      <a href="/5-createecs/5.1-createecscluster/">
+          <b>5.1</b> Create ECS Cluster
           
             <i class="fas fa-check read-icon"></i>
           
@@ -589,13 +589,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/5.2-createnlb/" title="Tạo Network Load Balancer" class="dd-item 
+    <li data-nav-id="/5-createecs/5.2-createnlb/" title=" Create Network Load Balancer" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/5.2-createnlb/">
-           <b> 5.2 </b> Tạo Network Load Balancer
+      <a href="/5-createecs/5.2-createnlb/">
+          <b>5.2</b> Create Network Load Balancer
           
             <i class="fas fa-check read-icon"></i>
           
@@ -617,13 +617,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/5.3-createvpclink/" title="Tạo VPC Link" class="dd-item 
+    <li data-nav-id="/5-createecs/5.3-createvpclink/" title=" Create VPC Link" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/5.3-createvpclink/">
-           <b> 5.3 </b> Tạo VPC Link
+      <a href="/5-createecs/5.3-createvpclink/">
+          <b>5.3</b> Create VPC Link
           
             <i class="fas fa-check read-icon"></i>
           
@@ -645,13 +645,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/5.4-createalb/" title="Tạo Application Load Balancer" class="dd-item 
+    <li data-nav-id="/5-createecs/5.4-createalb/" title=" Create Application Load Balancer" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/5.4-createalb/">
-           <b> 5.4 </b> Tạo Application Load Balancer
+      <a href="/5-createecs/5.4-createalb/">
+          <b>5.4</b> Create Application Load Balancer
           
             <i class="fas fa-check read-icon"></i>
           
@@ -673,13 +673,13 @@
  
   
     
-    <li data-nav-id="/vi/5-createecs/5.5-organizeanddeploystack/" title="Tổ chức và deploy NLB Stack" class="dd-item 
+    <li data-nav-id="/5-createecs/5.5-organizeanddeploystack/" title=" Organize and Deploy NLB Stack" class="dd-item 
         
         
         
         ">
-      <a href="/vi/5-createecs/5.5-organizeanddeploystack/">
-           <b> 5.5 </b> Tổ chức và deploy NLB Stack
+      <a href="/5-createecs/5.5-organizeanddeploystack/">
+          <b>5.5</b> Organize and Deploy NLB Stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -708,13 +708,13 @@
  
   
     
-    <li data-nav-id="/vi/6-createservice/" title="Tạo ECS service với CDK" class="dd-item 
+    <li data-nav-id="/6-createservice/" title="Create ECS Service with CDK" class="dd-item 
         parent
         
         
         ">
-      <a href="/vi/6-createservice/">
-           <b> 6. </b> Tạo ECS service với CDK
+      <a href="/6-createservice/">
+          <b>6.</b>Create ECS Service with CDK
           
             <i class="fas fa-check read-icon"></i>
           
@@ -739,13 +739,13 @@
  
   
     
-    <li data-nav-id="/vi/6-createservice/6.1-createnewstack/" title="Tạo Stack mới cho product service" class="dd-item 
+    <li data-nav-id="/6-createservice/6.1-createnewstack/" title=" Create a New Stack for Product Service" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-createservice/6.1-createnewstack/">
-           <b> 6.1 </b> Tạo Stack mới cho product service
+      <a href="/6-createservice/6.1-createnewstack/">
+          <b>6.1</b> Create a New Stack for Product Service
           
             <i class="fas fa-check read-icon"></i>
           
@@ -767,13 +767,153 @@
  
   
     
-    <li data-nav-id="/vi/6-createservice/6.2-createectask/" title="Tạo ECS task definition" class="dd-item 
+    <li data-nav-id="/6-createservice/6.2-createectask/" title=" Create ECS Task Definition" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.2-createectask/">
+          <b>6.2</b> Create ECS Task Definition
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.3-createsericelogdriver/" title=" Create Service Log Driver" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.3-createsericelogdriver/">
+          <b>6.3</b> Create Service Log Driver
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.4-addservicetotask/" title=" Add Container Service to Task Definition" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.4-addservicetotask/">
+          <b>6.4</b> Add Container Service to Task Definition
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.5-addlistenteralb/" title=" Add Listener to Application Load Balancer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.5-addlistenteralb/">
+          <b>6.5</b> Add Listener to Application Load Balancer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.6-createfagateservice/" title=" Create AWS Fargate Service" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.6-createfagateservice/">
+          <b>6.6</b> Create AWS Fargate Service
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.7-configtargergroup/" title=" Configure AWS ALB Target Group and Health Check Mechanism" class="dd-item 
         
         active
         
         ">
-      <a href="/vi/6-createservice/6.2-createectask/">
-           <b> 6.2 </b> Tạo ECS task definition
+      <a href="/6-createservice/6.7-configtargergroup/">
+          <b>6.7</b> Configure AWS ALB Target Group and Health Check Mechanism
           
             <i class="fas fa-check read-icon"></i>
           
@@ -795,13 +935,13 @@
  
   
     
-    <li data-nav-id="/vi/6-createservice/6.3-createsericelogdriver/" title="Tạo Service Log Driver" class="dd-item 
+    <li data-nav-id="/6-createservice/6.8-confignlb/" title=" Configure AWS Network Load Balancer" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-createservice/6.3-createsericelogdriver/">
-           <b> 6.3 </b> Tạo Service Log Driver
+      <a href="/6-createservice/6.8-confignlb/">
+          <b>6.8</b> Configure AWS Network Load Balancer
           
             <i class="fas fa-check read-icon"></i>
           
@@ -823,153 +963,13 @@
  
   
     
-    <li data-nav-id="/vi/6-createservice/6.4-addservicetotask/" title=" Thêm container service vào task definition" class="dd-item 
+    <li data-nav-id="/6-createservice/6.9-organizestack/" title=" Organize and Deploy Stack" class="dd-item 
         
         
         
         ">
-      <a href="/vi/6-createservice/6.4-addservicetotask/">
-           <b> 6.4 </b>  Thêm container service vào task definition
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-createservice/6.5-addlistenteralb/" title="Thêm Listener vào Application Load Balancer" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-createservice/6.5-addlistenteralb/">
-           <b> 6.5 </b> Thêm Listener vào Application Load Balancer
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-createservice/6.6-createfagateservice/" title="Tạo AWS Fargate service" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-createservice/6.6-createfagateservice/">
-           <b> 6.6 </b> Tạo AWS Fargate service
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-createservice/6.7-configtargergroup/" title="Cấu hình AWS ALB Target group và cơ chế health check" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-createservice/6.7-configtargergroup/">
-           <b> 6.7 </b> Cấu hình AWS ALB Target group và cơ chế health check
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-createservice/6.8-confignlb/" title="Cấu hình AWS Network Load Balancer" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-createservice/6.8-confignlb/">
-           <b> 6.8 </b> Cấu hình AWS Network Load Balancer
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/6-createservice/6.9-organizestack/" title="Tổ chức và deploy Stack" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/6-createservice/6.9-organizestack/">
-           <b> 6.9 </b> Tổ chức và deploy Stack
+      <a href="/6-createservice/6.9-organizestack/">
+          <b>6.9</b> Organize and Deploy Stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -984,594 +984,6 @@
           
         
         </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/7-createapigateway/" title="Tạo API Gateway với CDK" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/7-createapigateway/">
-           <b> 7. </b> Tạo API Gateway với CDK
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/7-createapigateway/7.1-createnew/" title="Tạo API Gateway resource" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/7-createapigateway/7.1-createnew/">
-           <b> 7.1 </b> Tạo API Gateway resource
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/7-createapigateway/7.2-createfirstmethod/" title="Tạo product resource và method đầu tiên" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/7-createapigateway/7.2-createfirstmethod/">
-           <b> 7.2 </b> Tạo product resource và method đầu tiên
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/7-createapigateway/7.3-organizestack/" title="Tổ chức Stack" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/7-createapigateway/7.3-organizestack/">
-           <b> 7.3 </b> Tổ chức Stack
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/" title="Tạo bảng DynamoDB products bằng AWS CDK" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/">
-           <b> 8. </b> Tạo bảng DynamoDB products bằng AWS CDK
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.1-createdynamo/" title="Tạo DynamoDB với CDK" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.1-createdynamo/">
-           <b> 8.1 </b> Tạo DynamoDB với CDK
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.2-post/" title="Tạo REST operation để tạo product mới" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.2-post/">
-           <b> 8.2 </b> Tạo REST operation để tạo product mới
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.3-put/" title="Tạo REST operation để UPDATE product bằng ID" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.3-put/">
-           <b> 8.3 </b> Tạo REST operation để UPDATE product bằng ID
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.4-getbyid/" title="Tạo REST operation để GET product bằng ID" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.4-getbyid/">
-           <b> 8.4 </b> Tạo REST operation để GET product bằng ID
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.5-deletebyid/" title="Tạo REST operation để DELETE product bằng ID" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.5-deletebyid/">
-           <b> 8.5 </b> Tạo REST operation để DELETE product bằng ID
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.6-configdynamodb/" title="Cấu hình DynamoDB" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.6-configdynamodb/">
-           <b> 8.6 </b> Cấu hình DynamoDB
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.7-createcontroller/" title="Tạo product repository" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.7-createcontroller/">
-           <b> 8.7 </b> Tạo product repository
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.8-createcontroller/" title="Tạo controller" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.8-createcontroller/">
-           <b> 8.8 </b> Tạo controller
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/8-createdynamodb/8.9-deploy/" title="Thực hiện deploy để kiểm thử" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/8-createdynamodb/8.9-deploy/">
-           <b> 8.9 </b> Thực hiện deploy để kiểm thử
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-intrumentingecs/" title="Đo lường dịch vụ AWS ECS với AWS X-Ray" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-intrumentingecs/">
-           <b> 9. </b> Đo lường dịch vụ AWS ECS với AWS X-Ray
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-      
-        <ul>
-          
-          
-            
-          
-          
-          
-        
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-intrumentingecs/9.1-reparetousexray/" title="Chuẩn bị Productsservice Spring Boot để sử dụng AWS X-Ray" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-intrumentingecs/9.1-reparetousexray/">
-           <b> 9.1 </b> Chuẩn bị Productsservice Spring Boot để sử dụng AWS X-Ray
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-intrumentingecs/9.2-createxrayinspector/" title="Tạo X-Ray inspector" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-intrumentingecs/9.2-createxrayinspector/">
-           <b> 9.2 </b> Tạo X-Ray inspector
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-intrumentingecs/9.3-addxraytotask/" title="Tạo X-Ray inspector" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-intrumentingecs/9.3-addxraytotask/">
-           <b> 9.3 </b> Tạo X-Ray inspector
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-            
-            
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/9-intrumentingecs/9.4-testimplement/" title="Testing the implementation" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/9-intrumentingecs/9.4-testimplement/">
-           <b> 9.4 </b> Testing the implementation
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
-              
-    </li>
-  
- 
-
-            
-          
-        
-        </ul>
-              
-    </li>
-  
- 
-
-          
-          
-
-
-
-
- 
-  
-    
-    <li data-nav-id="/vi/10-cleanresource/" title="Dọn dẹp resource" class="dd-item 
-        
-        
-        
-        ">
-      <a href="/vi/10-cleanresource/">
-           <b> 10. </b> Dọn dẹp resource
-          
-            <i class="fas fa-check read-icon"></i>
-          
-      </a>
-      
               
     </li>
   
@@ -1588,11 +1000,11 @@
         <ul>
           
               <li> 
-                  <a class="padding" href="http://awsstudygroup.com"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
+                  <a class="padding" href="https://aws.amazon.com/blogs"><i class='fab fa-aws'></i> AWS Study Group - Blog</a>
               </li>
           
               <li> 
-                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB</a>
+                  <a class="padding" href="https://www.facebook.com/groups/awsstudygroupfcj"><i class='fab fa-facebook'></i> AWS Study Group - FB Group</a>
               </li>
           
         </ul>
@@ -1617,7 +1029,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/6-createservice/6.2-createectask/">English</option>
+                      <option id="en" value="//localhost:1313/6-createservice/6.7-configtargergroup/" selected>English</option>
                     
                   
               
@@ -1631,7 +1043,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/6-createservice/6.2-createectask/" selected>Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/6-createservice/6.7-configtargergroup/">Tiếng Việt</option>
                     
                   
               
@@ -1719,7 +1131,7 @@
             
           
           
-            <a href='/vi/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/vi/6-createservice/'>Tạo ECS service với CDK</a> > Tạo ECS task definition
+            <a href='/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/6-createservice/'>Create ECS Service with CDK</a> >  Configure AWS ALB Target Group and Health Check Mechanism
           
         
           
@@ -1732,7 +1144,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1748,7 +1168,7 @@
           
             <h1>
               
-              Tạo ECS task definition
+               Configure AWS ALB Target Group and Health Check Mechanism
             </h1>
           
 
@@ -1756,25 +1176,56 @@
 
 
 
-	<h1 id="tạo-ces-task-definition">Tạo CES task definition</h1>
+	<h4 id="configure-aws-alb-target-group-and-health-check-mechanism">Configure AWS ALB Target Group and Health Check Mechanism</h4>
 <ol>
-<li>Trong <strong>ProductsServiceStack</strong> contructor khởi tạo đối tượng <strong>FargateTaskDefinition</strong></li>
+<li>First, create a target group from the <strong>applicationListener</strong> using the <strong>.addTargets</strong> method with an ID of <strong><code>ProductsServiceAlbTarget</code></strong>:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   FargateTaskDefinition fargateTaskDefinition <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FargateTaskDefinition(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#34;TaskDefinition&#34;</span>,
-</span></span><span style="display:flex;"><span>                FargateTaskDefinitionProps.<span style="color:#a6e22e">builder</span>()
-</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">build</span>());
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/taskdefinition/01.png?featherlight=false&width=60pc"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>applicationListener.<span style="color:#a6e22e">addTargets</span>(<span style="color:#e6db74">&#34;ProductsServiceAlbTarget&#34;</span>,
+</span></span><span style="display:flex;"><span>       AddApplicationTargetsProps.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>           .<span style="color:#a6e22e">build</span>()
+</span></span><span style="display:flex;"><span>   );
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/01.png?featherlight=false&width=60pc"></p>
 <ol start="2">
-<li>Tạo tên group của tất cả các task definition bạn đã tạo</li>
+<li>Set the target group name to <strong><code>productsServiceAlb</code></strong>:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">family</span>(<span style="color:#e6db74">&#34;products-service&#34;</span>)
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/taskdefinition/02.png?featherlight=false&width=60pc"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">targetGroupName</span>(<span style="color:#e6db74">&#34;productsServiceAlb&#34;</span>)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/02.png?featherlight=false&width=60pc"></p>
 <ol start="3">
-<li>Tiếp theo chúng ta định nghĩa số lượng <strong>cpu</strong> là 512 và <strong>memory</strong> là 1024</li>
+<li>Next, specify port 8081 for the Load Balancer to send traffic to, using the HTTP protocol to communicate with the targets:</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">cpu</span>(512)
-</span></span><span style="display:flex;"><span>   .<span style="color:#a6e22e">memoryLimitMiB</span>(1024)
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/taskdefinition/03.png?featherlight=false&width=60pc"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">port</span>(8081)
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">protocol</span>(ApplicationProtocol.<span style="color:#a6e22e">HTTP</span>)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/03.png?featherlight=false&width=60pc"></p>
+<ol start="4">
+<li>Next, add the list of Fargate services to the target group:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">targets</span>(Collections.<span style="color:#a6e22e">singletonList</span>(fargateService))
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/04.png?featherlight=false&width=60pc"></p>
+<ol start="5">
+<li>Next, define the deregistration delay of 30 seconds, allowing the Load Balancer to wait before deregistering an unavailable target:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">deregistrationDelay</span>(Duration.<span style="color:#a6e22e">seconds</span>(30))
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/05.png?featherlight=false&width=60pc"></p>
+<ol start="6">
+<li>Next, configure the health check and enable health check to ensure that targets are operating correctly:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">healthCheck</span>(HealthCheck.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>       .<span style="color:#a6e22e">enabled</span>(<span style="color:#66d9ef">true</span>)
+</span></span><span style="display:flex;"><span>       .<span style="color:#a6e22e">build</span>())
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/06.png?featherlight=false&width=60pc"></p>
+<ol start="7">
+<li>Kế tiếp chúng ta sẽ cấu hình khoảng thời gian giữa các lần kiểm tra sức khỏe là 30 giây và thời gian tối đa để chờ đợi phản hồi từ một target trong mỗi lần kiểm tra là 10 giây</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">interval</span>(Duration.<span style="color:#a6e22e">seconds</span>(30))
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">timeout</span>(Duration.<span style="color:#a6e22e">seconds</span>(10))
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/configTarget/07.png?featherlight=false&width=60pc"></p>
+<ol start="8">
+<li>Finally, declare the endpoint used to check the health of targets as <strong><code>/actuator/health</code></strong> with port 8081 used in the health check to communicate with targets:
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">path</span>(<span style="color:#e6db74">&#34;/actuator/health&#34;</span>)
+</span></span><span style="display:flex;"><span>.<span style="color:#a6e22e">port</span>(8081)
+</span></span></code></pre></div></li>
+</ol>
+<p><img alt="Architect" src="/images/6/configTarget/08.png?featherlight=false&width=60pc"></p>
 
 
 
@@ -2197,26 +1648,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -2297,55 +1728,6 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
                     
                 
                 
@@ -2363,56 +1745,9 @@
             
                 
                     
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
                         
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
                         
                     
-                    
-
-                    
-                        
-            
-            
-                
-                    
                 
                 
 
@@ -2420,219 +1755,6 @@
                     
                     
 
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                        
-                    
-                    
-
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
                     
             
         
@@ -2655,6 +1777,9 @@
                     
             
         
+                    
+            
+        
         
         
 
@@ -2662,10 +1787,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/vi/6-createservice/6.1-createnewstack/" title="Tạo Stack mới cho product service"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/6-createservice/6.6-createfagateservice/" title=" Create AWS Fargate Service"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/vi/6-createservice/6.3-createsericelogdriver/" title="Tạo Service Log Driver" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/6-createservice/6.8-confignlb/" title=" Configure AWS Network Load Balancer" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

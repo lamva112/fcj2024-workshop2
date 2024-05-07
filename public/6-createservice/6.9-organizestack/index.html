@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> Create Service Log Driver :: Start with Amazon VPC and AWS VPN Site-to-Site.</title>
+    <title> Organize and Deploy Stack :: Start with Amazon VPC and AWS VPN Site-to-Site.</title>
 
     
     <link href="/css/nucleus.css?1715085524" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/6-createservice/6.3-createsericelogdriver/">
+  <body class="" data-url="/6-createservice/6.9-organizestack/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -797,7 +797,7 @@
     
     <li data-nav-id="/6-createservice/6.3-createsericelogdriver/" title=" Create Service Log Driver" class="dd-item 
         
-        active
+        
         
         ">
       <a href="/6-createservice/6.3-createsericelogdriver/">
@@ -965,7 +965,7 @@
     
     <li data-nav-id="/6-createservice/6.9-organizestack/" title=" Organize and Deploy Stack" class="dd-item 
         
-        
+        active
         
         ">
       <a href="/6-createservice/6.9-organizestack/">
@@ -1029,7 +1029,7 @@
                   
                     
                     
-                      <option id="en" value="//localhost:1313/6-createservice/6.3-createsericelogdriver/" selected>English</option>
+                      <option id="en" value="//localhost:1313/6-createservice/6.9-organizestack/" selected>English</option>
                     
                   
               
@@ -1043,7 +1043,7 @@
                   
                     
                     
-                      <option id="vi" value="//localhost:1313/vi/6-createservice/6.3-createsericelogdriver/">Tiếng Việt</option>
+                      <option id="vi" value="//localhost:1313/vi/6-createservice/6.9-organizestack/">Tiếng Việt</option>
                     
                   
               
@@ -1131,7 +1131,7 @@
             
           
           
-            <a href='/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/6-createservice/'>Create ECS Service with CDK</a> >  Create Service Log Driver
+            <a href='/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/6-createservice/'>Create ECS Service with CDK</a> >  Organize and Deploy Stack
           
         
           
@@ -1168,7 +1168,7 @@
           
             <h1>
               
-               Create Service Log Driver
+               Organize and Deploy Stack
             </h1>
           
 
@@ -1176,46 +1176,66 @@
 
 
 
-	<h4 id="create-service-log-driver">Create Service Log Driver</h4>
+	<h4 id="organize-productsservicestack-stack">Organize ProductsServiceStack Stack</h4>
 <ol>
 <li>
-<p>During the development of a Spring Boot application, we need logging for debugging the application. Therefore, we will use CloudWatch Log Groups.</p>
+<p>Open the root file <strong>Fcj2024CdkApp</strong>:</p>
+<p><img alt="Architect" src="/images/6/organizeStack/01.png?featherlight=false&width=60pc"></p>
 </li>
 <li>
-<p>To create a log group, first initialize an <strong>AwsLogDriver</strong> object within the constructor:</p>
-</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   AwsLogDriver logDriver <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> AwsLogDriver(AwsLogDriverProps.<span style="color:#a6e22e">builder</span>()
-</span></span><span style="display:flex;"><span>       .<span style="color:#a6e22e">build</span>());
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/logDriver/02.png?featherlight=false&width=60pc"></p>
-<ol start="3">
-<li>Initialize a <strong>LogGroup</strong> object within the <strong>AwsLogDriver</strong>:</li>
-</ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">logGroup</span>(<span style="color:#66d9ef">new</span> LogGroup(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#34;LogGroup&#34;</span>,
-</span></span><span style="display:flex;"><span>       LogGroupProps.<span style="color:#a6e22e">builder</span>()
-</span></span><span style="display:flex;"><span>           .<span style="color:#a6e22e">build</span>()))
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/logDriver/03.png?featherlight=false&width=60pc"></p>
-<ol start="4">
-<li>Next, we need to add the necessary properties for the LogGroup:
+<p>Create and Set Tags:</p>
 <ul>
-<li>Set the log group name to <strong>ProductsService</strong>:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">logGroupName</span>(<span style="color:#e6db74">&#34;ProductsService&#34;</span>)
-</span></span></code></pre></div></li>
-<li>Configure the log group to be deleted when the Stack is deleted:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">removalPolicy</span>(RemovalPolicy.<span style="color:#a6e22e">DESTROY</span>)
-</span></span></code></pre></div></li>
-<li>Finally, specify how long AWS should retain these logs. Let&rsquo;s retain them for one month:
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">retention</span>(RetentionDays.<span style="color:#a6e22e">ONE_MONTH</span>)
+<li>
+<p>Create a <code>Map</code> named <code>productsServiceTags</code> to define tags for the stack and related resources. Tags are stored as key-value pairs in the map.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>Map<span style="color:#f92672">&lt;</span>String, String<span style="color:#f92672">&gt;</span> productsServiceTags <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>productsServiceTags.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;team&#34;</span>, <span style="color:#e6db74">&#34;FirstCloudJourney&#34;</span>);
+</span></span><span style="display:flex;"><span>productsServiceTags.<span style="color:#a6e22e">put</span>(<span style="color:#e6db74">&#34;cost&#34;</span>, <span style="color:#e6db74">&#34;ProductsService&#34;</span>);
 </span></span></code></pre></div></li>
 </ul>
 </li>
 </ol>
-<p><img alt="Architect" src="/images/6/logDriver/04.png?featherlight=false&width=60pc"></p>
-<ol start="5">
-<li>Finally, we need to set a prefix for our log files:</li>
+<p><img alt="Architect" src="/images/6/organizeStack/02.png?featherlight=false&width=60pc"></p>
+<ol start="3">
+<li>Create Stack ProductsServiceStack</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">streamPrefix</span>(<span style="color:#e6db74">&#34;ProductsService&#34;</span>)
-</span></span></code></pre></div><p><img alt="Architect" src="/images/6/logDriver/05.png?featherlight=false&width=60pc"></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span> ProductsServiceStack productsServiceStack <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ProductsServiceStack(app, <span style="color:#e6db74">&#34;ProductsService&#34;</span>,
+</span></span><span style="display:flex;"><span>                StackProps.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">env</span>(environment)
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">tags</span>(productsServiceTags)
+</span></span><span style="display:flex;"><span>                        .<span style="color:#a6e22e">build</span>(),
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">new</span> ProductsServiceProps(
+</span></span><span style="display:flex;"><span>                        vpcStack.<span style="color:#a6e22e">getVpc</span>(),
+</span></span><span style="display:flex;"><span>                        clusterStack.<span style="color:#a6e22e">getCluster</span>(),
+</span></span><span style="display:flex;"><span>                        nlbStack.<span style="color:#a6e22e">getNetworkLoadBalancer</span>(),
+</span></span><span style="display:flex;"><span>                        nlbStack.<span style="color:#a6e22e">getApplicationLoadBalancer</span>(),
+</span></span><span style="display:flex;"><span>                        ecrStack.<span style="color:#a6e22e">getProductsServiceRepository</span>()));
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/organizeStack/03.png?featherlight=false&width=60pc"></p>
+<ol start="4">
+<li>Add Dependencies to Ensure VPC, Cluster, NLB, and ECR are Created Before Creating the Service:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   productsServiceStack.<span style="color:#a6e22e">addDependency</span>(vpcStack);
+</span></span><span style="display:flex;"><span>   productsServiceStack.<span style="color:#a6e22e">addDependency</span>(clusterStack);
+</span></span><span style="display:flex;"><span>   productsServiceStack.<span style="color:#a6e22e">addDependency</span>(nlbStack);
+</span></span><span style="display:flex;"><span>   productsServiceStack.<span style="color:#a6e22e">addDependency</span>(ecrStack);
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/organizeStack/04.png?featherlight=false&width=60pc"></p>
+<h4 id="deploy-productsservice-stack-using-aws-cdk">Deploy ProductsService Stack using AWS CDK</h4>
+<ol start="5">
+<li>Open a terminal and run the following command to deploy:</li>
+</ol>
+<pre tabindex="0"><code>cdk deploy --all --require-approval never
+</code></pre><p><img alt="Architect" src="/images/6/organizeStack/05.png?featherlight=false&width=60pc"></p>
+<ol start="6">
+<li>After successful deployment, access the AWS Management Console. Navigate to <strong>ECS</strong>:</li>
+</ol>
+<p><img alt="Architect" src="/images/6/organizeStack/06.png?featherlight=false&width=60pc"></p>
+<ol start="7">
+<li>In the <strong>ECS</strong> dashboard, you can see a cluster named <strong>ECommerce</strong> has been created along with 2 running tasks:</li>
+</ol>
+<p><img alt="Architect" src="/images/6/organizeStack/07.png?featherlight=false&width=60pc"></p>
+<ol start="8">
+<li>Select the <strong>ECommerce</strong> cluster and then choose a task to view details about the created tasks:</li>
+</ol>
+<p><img alt="Architect" src="/images/6/organizeStack/08.png?featherlight=false&width=60pc"></p>
 
 
 
@@ -1654,26 +1674,6 @@
             
                 
                     
-                    
-                
-                
-
-                    
-                    
-                    
-
-                    
-            
-        
-                    
-                        
-            
-            
-                
-                    
-                        
-                        
-                    
                 
                 
 
@@ -1753,6 +1753,23 @@
             
             
                 
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
                     
                 
                 
@@ -1777,10 +1794,10 @@
 	 
 	 
 		
-			<a class="nav nav-prev" href="/6-createservice/6.2-createectask/" title=" Create ECS Task Definition"> <i class="fa fa-chevron-left"></i></a>
+			<a class="nav nav-prev" href="/6-createservice/6.8-confignlb/" title=" Configure AWS Network Load Balancer"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/6-createservice/6.4-addservicetotask/" title=" Add Container Service to Task Definition" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/6-createservice/6.1-createnewstack/" title=" Create a New Stack for Product Service" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>

@@ -9,24 +9,24 @@
 
     <link rel="icon" href="/images/favicon.png" type="image/png">
 
-    <title> :: Start with Amazon VPC and AWS VPN Site-to-Site.</title>
+    <title> Create AWS Fargate Service :: Start with Amazon VPC and AWS VPN Site-to-Site.</title>
 
     
-    <link href="/css/nucleus.css?1715083607" rel="stylesheet">
-    <link href="/css/fontawesome-all.min.css?1715083607" rel="stylesheet">
-    <link href="/css/hybrid.css?1715083607" rel="stylesheet">
-    <link href="/css/featherlight.min.css?1715083607" rel="stylesheet">
-    <link href="/css/perfect-scrollbar.min.css?1715083607" rel="stylesheet">
-    <link href="/css/auto-complete.css?1715083607" rel="stylesheet">
-    <link href="/css/atom-one-dark-reasonable.css?1715083607" rel="stylesheet">
-    <link href="/css/theme.css?1715083607" rel="stylesheet">
-    <link href="/css/hugo-theme.css?1715083607" rel="stylesheet">
+    <link href="/css/nucleus.css?1715085524" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1715085524" rel="stylesheet">
+    <link href="/css/hybrid.css?1715085524" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1715085524" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1715085524" rel="stylesheet">
+    <link href="/css/auto-complete.css?1715085524" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1715085524" rel="stylesheet">
+    <link href="/css/theme.css?1715085524" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1715085524" rel="stylesheet">
     
-    <link href="/css/theme-workshop.css?1715083607" rel="stylesheet">
+    <link href="/css/theme-workshop.css?1715085524" rel="stylesheet">
     
     
 
-    <script src="/js/jquery-3.3.1.min.js?1715083607"></script>
+    <script src="/js/jquery-3.3.1.min.js?1715085524"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -57,14 +57,14 @@
     <span data-search-clear=""><i class="fas fa-times"></i></span>
 </div>
 
-<script type="text/javascript" src="/js/lunr.min.js?1715083607"></script>
-<script type="text/javascript" src="/js/auto-complete.js?1715083607"></script>
+<script type="text/javascript" src="/js/lunr.min.js?1715085524"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1715085524"></script>
 <script type="text/javascript">
     
         var baseurl = "\/\/localhost:1313\/";
     
 </script>
-<script type="text/javascript" src="/js/search.js?1715083607"></script>
+<script type="text/javascript" src="/js/search.js?1715085524"></script>
 
     
   </div>
@@ -879,13 +879,97 @@
  
   
     
-    <li data-nav-id="/6-createservice/6.6-createfagateservice/" title="" class="dd-item 
+    <li data-nav-id="/6-createservice/6.6-createfagateservice/" title=" Create AWS Fargate Service" class="dd-item 
         
         active
         
         ">
       <a href="/6-createservice/6.6-createfagateservice/">
+          <b>6.6</b> Create AWS Fargate Service
           
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.7-configtargergroup/" title=" Configure AWS ALB Target Group and Health Check Mechanism" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.7-configtargergroup/">
+          <b>6.7</b> Configure AWS ALB Target Group and Health Check Mechanism
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.8-confignlb/" title=" Configure AWS Network Load Balancer" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.8-confignlb/">
+          <b>6.8</b> Configure AWS Network Load Balancer
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/6-createservice/6.9-organizestack/" title=" Organize and Deploy Stack" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/6-createservice/6.9-organizestack/">
+          <b>6.9</b> Organize and Deploy Stack
           
             <i class="fas fa-check read-icon"></i>
           
@@ -1047,7 +1131,7 @@
             
           
           
-            <a href='/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/6-createservice/'>Create ECS Service with CDK</a> > 
+            <a href='/'>Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK.</a> > <a href='/6-createservice/'>Create ECS Service with CDK</a> >  Create AWS Fargate Service
           
         
           
@@ -1060,7 +1144,15 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -1076,7 +1168,7 @@
           
             <h1>
               
-              
+               Create AWS Fargate Service
             </h1>
           
 
@@ -1084,7 +1176,59 @@
 
 
 
-	
+	<h4 id="create-aws-fargate-service">Create AWS Fargate Service</h4>
+<ol>
+<li>Initialize a <code>FargateService</code> within the <code>ProductsServiceStack</code> constructor with the ID <strong>ProductsService</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   FargateService fargateService <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FargateService(<span style="color:#66d9ef">this</span>, <span style="color:#e6db74">&#34;ProductsService&#34;</span>,
+</span></span><span style="display:flex;"><span>       FargateServiceProps.<span style="color:#a6e22e">builder</span>()
+</span></span><span style="display:flex;"><span>           .<span style="color:#a6e22e">build</span>());
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/10.png?featherlight=false&width=60pc"></p>
+<ol start="2">
+<li>Set the service name to <strong>ProductsService</strong>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">serviceName</span>(<span style="color:#e6db74">&#34;ProductsService&#34;</span>)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/11.png?featherlight=false&width=60pc"></p>
+<ol start="3">
+<li>Next, specify the cluster that was created earlier to create the Fargate service:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">cluster</span>(productsServiceProps.<span style="color:#a6e22e">cluster</span>())
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/12.png?featherlight=false&width=60pc"></p>
+<ol start="4">
+<li>In addition to the cluster, we need to specify the task definition to use for creating the Fargate service. We will use the <code>fargateTaskDefinition</code> that was created earlier:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">taskDefinition</span>(fargateTaskDefinition)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/13.png?featherlight=false&width=60pc"></p>
+<ol start="5">
+<li>Next, specify the desired number of instances to use. In this workshop, we will use 2 instances:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>.<span style="color:#a6e22e">desiredCount</span>(2)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/14.png?featherlight=false&width=60pc"></p>
+<ol start="6">
+<li>Next, to keep the Fargate tasks in a private subnet and allow outbound connectivity through a NAT Gateway without assigning a public IP:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">assignPublicIp</span>(<span style="color:#66d9ef">false</span>)
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/15.png?featherlight=false&width=60pc"></p>
+<ol start="7">
+<li>Additionally, if you did not create a NAT Gateway in the VPC creation phase, you can enable public IP assignment for the Fargate service:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>   .<span style="color:#a6e22e">assignPublicIp</span>(<span style="color:#66d9ef">true</span>)
+</span></span></code></pre></div>
+<div class="notices warning" ><p>Đừng làm trong môi trường production</p>
+</div>
+
+<p><img alt="Architect" src="/images/6/fargate/16.png?featherlight=false&width=60pc"></p>
+<ol start="8">
+<li>ECS service của chúng ta cần permission để pull image từ ECR repository. Vì vậy chúng ta cần phải cấp quyền như sau</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>productsServiceProps.<span style="color:#a6e22e">repository</span>().<span style="color:#a6e22e">grantPull</span>(Objects.<span style="color:#a6e22e">requireNonNull</span>(fargateTaskDefinition.<span style="color:#a6e22e">getExecutionRole</span>()));
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/17.png?featherlight=false&width=60pc"></p>
+<ol start="9">
+<li>Finally, another important aspect is defining that our service accepts requests on HTTP port 8081:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>fargateService.<span style="color:#a6e22e">getConnections</span>().<span style="color:#a6e22e">getSecurityGroups</span>().<span style="color:#a6e22e">get</span>(0).<span style="color:#a6e22e">addIngressRule</span>(Peer.<span style="color:#a6e22e">anyIpv4</span>(), Port.<span style="color:#a6e22e">tcp</span>(8081));
+</span></span></code></pre></div><p><img alt="Architect" src="/images/6/fargate/18.png?featherlight=false&width=60pc"></p>
+
 
 
 
@@ -1582,6 +1726,57 @@
             
         
                     
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
             
         
                     
@@ -1597,7 +1792,7 @@
 			<a class="nav nav-prev" href="/6-createservice/6.5-addlistenteralb/" title=" Add Listener to Application Load Balancer"> <i class="fa fa-chevron-left"></i></a>
 		
 		
-			<a class="nav nav-next" href="/6-createservice/6.1-createnewstack/" title=" Create a New Stack for Product Service" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+			<a class="nav nav-next" href="/6-createservice/6.7-configtargergroup/" title=" Configure AWS ALB Target Group and Health Check Mechanism" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -1607,19 +1802,19 @@
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/js/clipboard.min.js?1715083607"></script>
-    <script src="/js/perfect-scrollbar.min.js?1715083607"></script>
-    <script src="/js/perfect-scrollbar.jquery.min.js?1715083607"></script>
-    <script src="/js/jquery.sticky.js?1715083607"></script>
-    <script src="/js/featherlight.min.js?1715083607"></script>
-    <script src="/js/highlight.pack.js?1715083607"></script>
+    <script src="/js/clipboard.min.js?1715085524"></script>
+    <script src="/js/perfect-scrollbar.min.js?1715085524"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1715085524"></script>
+    <script src="/js/jquery.sticky.js?1715085524"></script>
+    <script src="/js/featherlight.min.js?1715085524"></script>
+    <script src="/js/highlight.pack.js?1715085524"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/js/modernizr.custom-3.6.0.js?1715083607"></script>
-    <script src="/js/learn.js?1715083607"></script>
-    <script src="/js/hugo-learn.js?1715083607"></script>
+    <script src="/js/modernizr.custom-3.6.0.js?1715085524"></script>
+    <script src="/js/learn.js?1715085524"></script>
+    <script src="/js/hugo-learn.js?1715085524"></script>
 
-    <link href="/mermaid/mermaid.css?1715083607" rel="stylesheet" />
-    <script src="/mermaid/mermaid.js?1715083607"></script>
+    <link href="/mermaid/mermaid.css?1715085524" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1715085524"></script>
     <script>
         mermaid.initialize({ startOnLoad: true });
     </script>

@@ -20,7 +20,7 @@ NetworkListener networkListener = productsServiceProps.networkLoadBalancer()
 2. Bây giờ, chúng ta sẽ cấu hình cho networkListener lắng nghe trên port 8081
 
 ```java
-.port(8080)
+.port(8081)
 ```
 
 ![Architect](/images/6/configNLB/02.png?featherlight=false&width=60pc)
@@ -49,7 +49,7 @@ networkListener.addTargets("ProductsServiceNlbTarget",
 ```
 ![Architect](/images/6/configNLB/04.png?featherlight=false&width=60pc)
 
-5. Tiếp theo cho ta se cho các kết nối sẽ được gửi đến cổng 8081 trên các target.
+5. Tiếp theo cho ta sẽ cho các kết nối sẽ được gửi đến cổng 8081 trên các target.
 
 ```java
    .port(8081)
