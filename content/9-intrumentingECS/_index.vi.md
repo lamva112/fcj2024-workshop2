@@ -7,4 +7,4 @@ pre : " <b> 9. </b> "
 ---
 
 #### Đo lường dịch vụ AWS ECS với AWS X-Ray
-![Architect](/images/9/ws2.png?featherlight=false&width=80pc)
+![Architect](/images/9/.png?featherlight=false&width=80pc)

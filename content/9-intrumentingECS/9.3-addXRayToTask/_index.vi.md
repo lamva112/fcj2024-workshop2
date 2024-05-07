@@ -59,3 +59,4 @@ fargateTaskDefinition.addContainer("xray", ContainerDefinitionOptions.builder()
 ```java
 fargateTaskDefinition.getTaskRole().addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName("AWSXrayWriteOnlyAccess"));
 ```
+![Architect](/images/9/addsidecar/05.png/?featherlight=false&width=60pc)

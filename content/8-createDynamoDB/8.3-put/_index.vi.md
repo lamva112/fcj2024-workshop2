@@ -69,7 +69,7 @@ Map<String, Boolean> productIdMethodParameters = new HashMap<>();
 productIdMethodParameters.put("method.request.path.id", true);
 ```
 
-- Thêm  **productIdMethodParameters** vào methodOptions
+- Thêm **productIdMethodParameters** vào methodOptions
 
 ```java
 MethodOptions.builder()

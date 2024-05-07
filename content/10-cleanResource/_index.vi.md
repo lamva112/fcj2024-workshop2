@@ -1,14 +1,14 @@
 ---
-title : "Dọn dẹp resource"
-date :  "`r Sys.Date()`" 
-weight : 10
-chapter : false
-pre : " <b> 10. </b> "
+title: "Cleanup Resources"
+date: "`r Sys.Date()`"
+weight: 10
+chapter: false
+pre: "<b>10.</b>"
 ---
 
-#### Dọn dẹp resource
+#### Cleanup Resources
 
-1. Để xoá resource ta sử dụng dòng lệnh sau
+1. To delete resources, use the following command:
 
 ```
 cdk deploy --all --require-approval never

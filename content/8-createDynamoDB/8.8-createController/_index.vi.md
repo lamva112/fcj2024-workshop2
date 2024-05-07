@@ -151,4 +151,5 @@ private final ProductsRepository productsRepository;
         }
     }
 ```
+
 ![Architect](/images/8/controller/08.png/?featherlight=false&width=60pc)

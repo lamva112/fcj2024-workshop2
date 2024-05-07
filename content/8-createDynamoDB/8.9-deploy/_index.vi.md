@@ -1,5 +1,5 @@
 ---
-title : "Thực hiện deploy để kiểm thử"
+title : " Thực hiện deploy để kiểm thử"
 date :  "`r Sys.Date()`" 
 weight : 9
 chapter : false
@@ -48,35 +48,45 @@ pre : " <b> 8.9 </b> "
 
 ![Architect](/images/8/implement/10.png/?featherlight=false&width=60pc)
 
-11. Truy cập giao diện APIGateway Kiểm tra các phương thức đã tạo
+11. Access the API Gateway interface to verify the created methods.
 
-![Architect](/images/8/implement/11.png/?featherlight=false&width=60pc)
+    ![Architect](/images/8/implement/11.png/?featherlight=false&width=60pc)
 
-12. Trong giao điện **API Gateway** chọn **Stages** và copy **Invoke URL** cho việc kiểm thử API trên postman
+12. In the **API Gateway** interface, navigate to **Stages** and copy the **Invoke URL** for testing the API in Postman.
 
-![Architect](/images/8/implement/12.png/?featherlight=false&width=60pc)
+    ![Architect](/images/8/implement/12.png/?featherlight=false&width=60pc)
 
-13. Để thêm product bằng phương thức Post. Trên giao diện postman tạo phương thức POST với đường dẫn là **```Invoke URL/product```**
+13. To add a product using the POST method, open Postman and create a POST request with the endpoint **`Invoke URL/product`**.
 
-![Architect](/images/8/implement/13.png/?featherlight=false&width=60pc)
+    ![Architect](/images/8/implement/13.png/?featherlight=false&width=60pc)
 
-14. Tiếp theo chúng ta cần truyền parameter. Chọn **Body** và chọn **raw**. Cuối cùng, nhập data theo format sau
+14. Next, pass parameters by selecting **Body** and choosing **raw**. Then enter the data in the following format:
 
-```
-{
-    "name":"Product1",
-    "code":"COD1",
-    "model":"Model1",
-    "price":10.50
-}
-```
-- Nhấn **send** để gửi request. Tương tự như vậy ta có thể add thêm nhiều product data
+    ```json
+    {
+        "name": "Product1",
+        "code": "COD1",
+        "model": "Model1",
+        "price": 10.50
+    }
+    ```
+
+    Press **Send** to submit the request. Similarly, you can add more product data.
+
+
 
 ![Architect](/images/8/implement/14.png/?featherlight=false&width=60pc)
 
 
-15. Tiếp theo chúng ta sẽ lấy tất cả product đã tạo bằng phương thức GET với đường dẫn là  **```Invoke URL/product```**
+15.  Tiếp theo chúng ta sẽ lấy tất cả product đã tạo bằng phương thức GET với đường dẫn là  **```Invoke URL/product```**
 
 ![Architect](/images/8/implement/15.png/?featherlight=false&width=60pc)
 
 16. Làm tương tự với các phương thức còn lại.
+
+15. Next, retrieve all created products using the GET method with the endpoint **`Invoke URL/product`**.
+
+    ![Architect](/images/8/implement/15.png/?featherlight=false&width=60pc)
+
+16. Similarly, perform the same steps for the remaining methods.
+

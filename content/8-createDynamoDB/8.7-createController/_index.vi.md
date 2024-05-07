@@ -28,7 +28,7 @@ private DynamoDbAsyncTable<Product> productsTable;
 
 ![Architect](/images/8/createRepositories/03.png?featherlight=false&width=60pc)
 
-1. Tạo constructor trong lớp ProductsRepository với
+4. Tạo constructor trong lớp ProductsRepository với
    + Thêm **@Autowired** là một annotation của Spring được sử dụng để tự động inject các dependency vào constructor của lớp ProductsRepository.
    + Tạo một tham chiếu **DynamoDbEnhancedAsyncClient dynamoDbEnhancedAsyncClient** được Spring inject vào constructor. Đối tượng này sẽ được sử dụng để tương tác với DynamoDB.
    + Tạo tham chiếu **@Value("${aws.productsddb.name}") String productsDdbName** là một annotation của Spring để inject giá trị của thuộc tính từ file cấu hình application.properties Trong trường hợp này, nó sẽ inject giá trị của thuộc tính có tên là "aws.productsddb.name" vào biến productsDdbName. Đây là tên của bảng DynamoDB mà ProductsRepository sẽ tương tác.
@@ -93,7 +93,7 @@ public CompletableFuture<Product> getById(String productId) {
 ![Architect](/images/8/createRepositories/08.png?featherlight=false&width=60pc)
 
 9. Tạo phương thức **create**,phương thức này nhận vào một đối tượng **Product** và trả về một **CompletableFuture<Void>**, đại diện cho kết quả của việc tạo mới một mục Product trong bảng DynamoDB.
- + với **productsTable.putItem(product)** là một hoạt động thêm mục (put item) vào bảng DynamoDB. Phương thức này sẽ đưa product vào bảng và trả về một **CompletableFuture<Void>** để xử lý kết quả một cách bất đồng bộ.
+ + Với **productsTable.putItem(product)** là một hoạt động thêm mục (put item) vào bảng DynamoDB. Phương thức này sẽ đưa product vào bảng và trả về một **CompletableFuture<Void>** để xử lý kết quả một cách bất đồng bộ.
 
 ```java
 public CompletableFuture<Void> create(Product product) {
