@@ -27,7 +27,7 @@ NlbStack nlbStack = new NlbStack(app, "Nlb", StackProps.builder()
 ```
 ![Architect](/images/5/createNLB/16.png?featherlight=false&width=60pc)
 
-4. Thêm Thêm environmen* và Tags cho NLB Stack
+4.  Thêm environmen và Tags cho NLB Stack
 
 ```java
    .env(environment)

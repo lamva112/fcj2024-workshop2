@@ -8,14 +8,12 @@ pre : " <b> 2. </b> "
 
 #### Các bước chuẩn bị
 
-Trước tiên, chúng ta sẽ xây dựng một mô hình theo sơ đồ bên dưới để đảm bảo rằng ứng dụng web của chúng ta hoạt động bình 
-thường
 
 1.  **Java Development Kit (JDK)**
 -  Đầu tiên chúng ta cần cài đặt **Java Development Kit (JDK)**. Trong workshop nảy chúng ta sẽ dùng **JDK 21 LTS**. Bạn có thể tải tại [đường dẫn này](https://www.oracle.com/java/technologies/downloads/#java21)
 -  Tiếp theo chúng ta cần cài đặt **maven**. Bạn có thể cài đặt theo [hướng dẫn](https://maven.apache.org/install.html)
 
-2. **NodeJS**
+1. **NodeJS**
 - để cài dặt **AWS CDK CLI** chúng ta cần phải cài đặt NodeJS. Truy cập [đường dẫn](https://nodejs.org/en/download/). Tải về phiên bản LTS mới nhất
   
 - Kiểm tra NodeJS đã được cài đặt đúng chưa, thực hiện lệnh sau trong terminal

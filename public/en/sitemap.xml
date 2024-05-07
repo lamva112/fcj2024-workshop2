@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//localhost:1313/3-createecr/3.1-createfirststack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.1-createfirststack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.1-createfirststack/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-prerequiste/2.1-createinfrastructureproject/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.1-createinfrastructureproject/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.1-createinfrastructureproject/"
+                />
+  </url><url>
     <loc>//localhost:1313/</loc>
     <xhtml:link
                 rel="alternate"
@@ -26,6 +50,30 @@
                 href="//localhost:1313/1-introduce/"
                 />
   </url><url>
+    <loc>//localhost:1313/2-prerequiste/2.2-createspingbootproject/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.2-createspingbootproject/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-createecr/3.2-organizestack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.2-organizestack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.2-organizestack/"
+                />
+  </url><url>
     <loc>//localhost:1313/2-prerequiste/</loc>
     <xhtml:link
                 rel="alternate"
@@ -36,6 +84,78 @@
                 rel="alternate"
                 hreflang="en"
                 href="//localhost:1313/2-prerequiste/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-createecr/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-createecr/3.3-implementstack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.3-implementstack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.3-implementstack/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-prerequiste/2.3-setupintellijidea/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.3-setupintellijidea/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.3-setupintellijidea/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-prerequiste/2.4-createdockerfile/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.4-createdockerfile/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.4-createdockerfile/"
+                />
+  </url><url>
+    <loc>//localhost:1313/3-createecr/3.4-pushimage/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.4-pushimage/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.4-pushimage/"
+                />
+  </url><url>
+    <loc>//localhost:1313/2-prerequiste/2.5-rundockerlocal/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.5-rundockerlocal/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.5-rundockerlocal/"
                 />
   </url><url>
     <loc>//localhost:1313/categories/</loc>

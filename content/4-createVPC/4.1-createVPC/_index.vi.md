@@ -31,7 +31,7 @@ pre : " <b> 4.1 </b> "
 ![Architect](/images/4/createVPC/03.png?featherlight=false&width=60pc)
 
 4. Khởi tạo đối tượng VPC bằng đoạn code sau trong contructor
-    ```
+    ```java
        this.vpc = new Vpc(this, "Vpc", VpcProps.builder() .build());
      
     ```
@@ -48,9 +48,9 @@ pre : " <b> 4.1 </b> "
 
 6. Nếu bạn muốn VPC của bạn là Public và không sử dụng Nat gateway bạn có thể thêm đoạn code 
    
-  ```java
+```java
   .natGateways(0)
-  ```
+```
 
 {{% notice warning %}}
  Bạn có thể không sử dụng Nate gateway khi làm lab để tiết kiệm chi phí nhưng đừng làm trong môi trường production 

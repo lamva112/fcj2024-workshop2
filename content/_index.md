@@ -1,26 +1,16 @@
 ---
-title : "Deploy 2-tier web application"
-date :  "`r Sys.Date()`" 
-weight : 1 
-chapter : false
+title: "Deploy Spring Boot applications onto AWS ECS Fargate using AWS CDK."
+date: "`r Sys.Date()`"
+weight: 1
+chapter: false
 ---
-# Use AWS CDK to deploy Spring Boot services on AWS ECS Fargate
+
+# Deploying Spring Boot Services on AWS ECS Fargate using AWS CDK
 
 #### Overview
 
-A 2-tier web application is a popular software architecture in which the components of the application are divided into two main tiers: the user interface tier and the service or processing logic tier. In this model, the user interface tier is responsible for displaying data and interacting with users, while the service or processing logic tier performs tasks such as processing logic, retrieving data, and interacting with databases or other systems.
+In this workshop, we will create a microservice using Java 11, leveraging the Spring Boot framework, and Docker containers to build a backend application that interacts with Amazon Web Services (AWS) resources. These resources will be provisioned on AWS using the AWS Cloud Development Kit (CDK) v2, a modern way to model and configure infrastructure on AWS. AWS CDK is one of the best tools for managing infrastructure as code (IaC) on AWS.
 
-When deploying a 2-tier application on AWS (Amazon Web Services), there are several important services and resources that you can use:
-
-1. **EC2 (Elastic Compute Cloud)**: EC2 provides scalable virtual machines that you can use to deploy components of your application, including both the user interface tier and the service tier.
-
-2. **RDS (Relational Database Service)**: RDS offers relational database services such as MySQL, PostgreSQL, SQL Server, and Oracle. You can use RDS to store data for your application.
-
-3. **ELB (Elastic Load Balancing)**: ELB enables distributing traffic across your EC2 instances, enhancing the scalability and reliability of your application.
-
-4. **VPC (Virtual Private Cloud)**: VPC allows you to create a virtual network environment within AWS to deploy your application, providing security and access control.
-
-In this lab, we will explore the concept of a 2-tier web application and how to execute it in the AWS environment.
 
 #### Content
 1. [Introduction to 2-tier](1-introduce/)

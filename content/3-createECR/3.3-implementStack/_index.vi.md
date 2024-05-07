@@ -1,5 +1,5 @@
 ---
-title : "Triển khai Stack lên AWS ECR"
+title : " Triển khai Stack lên AWS ECR"
 date :  "`r Sys.Date()`" 
 weight : 3
 chapter : false

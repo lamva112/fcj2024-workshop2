@@ -1,12 +1,12 @@
 ---
-title : "Push Docker image lên ECR"
+title : " Push Docker image lên ECR"
 date :  "`r Sys.Date()`" 
 weight : 4
 chapter : false
 pre : " <b> 3.4 </b> "
 ---
 
-# Push Docker image lên ECR repository
+#### Push Docker image lên ECR repository
 
 1. Hãy đảm bảo là bạn đã cài AWS toolkit. Nếu chưa vào IntelliJ IDEA **setting** chọn **plugins** và tìm **AWS toolkit** để cài đặt
 

@@ -16,7 +16,7 @@ pre : " <b> 3.2 </b> "
 ```java
 EcrStack ecrStack = new EcrStack(app, "Ecr", StackProps.builder()
                 .build());
- ```
+```
 
 ![Architect](/images/3/orstack/02.png?featherlight=false&width=60pc)
 

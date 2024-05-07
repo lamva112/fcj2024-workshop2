@@ -31,12 +31,32 @@
     <loc>//localhost:1313/vi/7-createapigateway/7.1-createnew/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.1-createfirststack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.1-createfirststack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.1-createfirststack/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/8-createdynamodb/8.1-createdynamo/</loc>
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.1-createecscluster/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.1-createinfrastructureproject/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.1-createinfrastructureproject/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.1-createinfrastructureproject/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.1-createnewstack/</loc>
   </url><url>
@@ -63,16 +83,68 @@
     <loc>//localhost:1313/vi/8-createdynamodb/8.2-post/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.2-createspingbootproject/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/9-intrumentingecs/9.2-createxrayinspector/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.2-organizestack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.2-organizestack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.2-organizestack/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/4-createvpc/4.2-orgaizestack/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/3-createecr/3.3-implementstack/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.3-implementstack/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.3-implementstack/"
+                />
+  </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.3-setupintellijidea/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.3-setupintellijidea/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.3-setupintellijidea/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/8-createdynamodb/8.3-put/</loc>
   </url><url>
@@ -84,13 +156,31 @@
   </url><url>
     <loc>//localhost:1313/vi/7-createapigateway/7.3-organizestack/</loc>
   </url><url>
-    <loc>//localhost:1313/vi/3-createecr/3.3-implementstack/</loc>
-  </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.4-pushimage/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/3-createecr/3.4-pushimage/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/3-createecr/3.4-pushimage/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.4-createalb/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.4-createdockerfile/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.4-createdockerfile/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.4-createdockerfile/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/8-createdynamodb/8.4-getbyid/</loc>
   </url><url>
@@ -101,6 +191,16 @@
     <loc>//localhost:1313/vi/6-createservice/6.4-addservicetotask/</loc>
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.5-rundockerlocal/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="//localhost:1313/2-prerequiste/2.5-rundockerlocal/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="//localhost:1313/vi/2-prerequiste/2.5-rundockerlocal/"
+                />
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/</loc>
   </url><url>
@@ -131,6 +231,8 @@
     <loc>//localhost:1313/vi/9-intrumentingecs/</loc>
   </url><url>
     <loc>//localhost:1313/vi/8-createdynamodb/8.9-deploy/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/10-cleanresource/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.10-organizestack/</loc>
   </url><url>

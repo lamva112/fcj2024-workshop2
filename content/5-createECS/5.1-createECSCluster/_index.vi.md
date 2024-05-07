@@ -95,7 +95,7 @@ ClusterStack clusterStack = new ClusterStack(app, "Cluster", StackProps.builder(
 ```
 ![Architect](/images/5/ecsCLuster/11.png?featherlight=false&width=60pc)
 
-12. Thêm Thêm environmen* và Tags cho ECS Stack
+12. Thêm environmen* và Tags cho ECS Stack
 
 ```java
    .env(environment)

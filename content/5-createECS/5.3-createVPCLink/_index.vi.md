@@ -17,7 +17,7 @@ this.vpcLink = new VpcLink(this, "VpcLink",
 ```
 ![Architect](/images/5/createNLB/09.png?featherlight=false&width=60pc)
 
-2. Tiếp theo chúng ta sẽ kết nối PVC Link với Network Load Balancer tạo 1 target cho 
+2. Tiếp theo chúng ta sẽ kết nối PVC Link với Network Load Balancer tạo 1 target đến NLB
 
 ```java
 .targets(Collections.singletonList(this.networkLoadBalancer))
