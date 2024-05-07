@@ -7,4 +7,4 @@ pre : " <b> 4. </b> "
 ---
 Trong phần này chúng ta sẽ tạo VPC và Nat gateway bằng cách sử dụng AWS CDK
 
-![Architect](/images/4/test.png?featherlight=false&width=80pc)
+![Architect](/images/4/ws2.png?featherlight=false&width=80pc)

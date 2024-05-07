@@ -28,4 +28,3 @@ pre : " <b> 1. </b> "
 
 + **SQS**: SQS là một dịch vụ hàng đợi cho phép giao tiếp bất đồng bộ giữa các ứng dụng, nhằm trao đổi các thông điệp và sự kiện.
 
-+ **SNS**: Với SNS bạn có thể tạo các chủ đề và xuất bản các thông điệp để được nhận bởi nhiều tài nguyên và ứng dụng.

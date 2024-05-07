@@ -7,5 +7,5 @@ pre : " <b> 8. </b> "
 ---
 
 #### Trong phần này chúng ta sẽ tạo bảng DynamoDb product bằng AWS CDK
-![Architect](/images/8/test.png?featherlight=false&width=80pc)
+![Architect](/images/8/ws2.png?featherlight=false&width=80pc)
 

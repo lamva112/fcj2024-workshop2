@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//localhost:1313/vi/9-intrumentingecs/9.1-reparetousexray/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/</loc>
     <xhtml:link
                 rel="alternate"
@@ -62,6 +64,8 @@
   </url><url>
     <loc>//localhost:1313/vi/2-prerequiste/2.2-createspingbootproject/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/9-intrumentingecs/9.2-createxrayinspector/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.2-organizestack/</loc>
   </url><url>
     <loc>//localhost:1313/vi/4-createvpc/4.2-orgaizestack/</loc>
@@ -76,6 +80,8 @@
   </url><url>
     <loc>//localhost:1313/vi/5-createecs/5.3-createvpclink/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/9-intrumentingecs/9.3-addxraytotask/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/7-createapigateway/7.3-organizestack/</loc>
   </url><url>
     <loc>//localhost:1313/vi/3-createecr/3.3-implementstack/</loc>
@@ -89,6 +95,8 @@
     <loc>//localhost:1313/vi/8-createdynamodb/8.4-getbyid/</loc>
   </url><url>
     <loc>//localhost:1313/vi/4-createvpc/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/9-intrumentingecs/9.4-testimplement/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.4-addservicetotask/</loc>
   </url><url>
@@ -116,7 +124,13 @@
   </url><url>
     <loc>//localhost:1313/vi/8-createdynamodb/</loc>
   </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.8-createcontroller/</loc>
+  </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.9-confignlb/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/9-intrumentingecs/</loc>
+  </url><url>
+    <loc>//localhost:1313/vi/8-createdynamodb/8.9-deploy/</loc>
   </url><url>
     <loc>//localhost:1313/vi/6-createservice/6.10-organizestack/</loc>
   </url><url>
