@@ -13,11 +13,14 @@ In this workshop, we will create a microservice using Java 11, leveraging the Sp
 
 
 #### Content
-1. [Introduction to 2-tier](1-introduce/)
+1. [Introduction](1-introduce/)
 2. [Prerequisite steps](2-Prerequiste/)
-3. [Create EC2 server](3-CreateEc2Server/)
-4. [Create RDS database](4-CreateRDS/)
-5. [Install and configure web application on EC2 server](5-Installandconfigurewebapp/)
-6. [Create a highly available 2-tier web application](6-makeWebSiteHighly/)
-7. [Configure Public DNS with Route53](7-setup-public-dns/)
-8. [Clean up resources](8-cleanUpResource/)
+3. [Create ECR Image Repository](3-createECR/)
+4. [Create VPC and NAT Gateway](4-createVPC/)
+5. [Create ECS](5-createECS/)
+6. [Create ECS Service](6-createService/)
+7. [Create API Gateway](7-createAPIGateway/)
+8. [Create DynamoDB Table](8-createDynamoDB/)
+9. [Instrumenting AWS ECS Service](9-intrumentingECS/)
+10. [Clean up resources](10-cleanResource/)
+
