@@ -11,6 +11,7 @@ chapter: false
 
 In this workshop, we will create a microservice using Java 11, leveraging the Spring Boot framework, and Docker containers to build a backend application that interacts with Amazon Web Services (AWS) resources. These resources will be provisioned on AWS using the AWS Cloud Development Kit (CDK) v2, a modern way to model and configure infrastructure on AWS. AWS CDK is one of the best tools for managing infrastructure as code (IaC) on AWS.
 
+![Architect](/images/ws2.svg?featherlight=false&width=80pc)
 
 #### Content
 1. [Introduction](1-introduce/)
