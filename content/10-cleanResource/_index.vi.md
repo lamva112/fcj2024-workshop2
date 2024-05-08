@@ -8,7 +8,7 @@ pre: "<b>10.</b>"
 
 #### Cleanup Resources
 
-1. To delete resources, use the following command:
+1. Để xoá resources, chúng ta sử dụng lệnh command sau:
 
 ```
 cdk deploy --all --require-approval never

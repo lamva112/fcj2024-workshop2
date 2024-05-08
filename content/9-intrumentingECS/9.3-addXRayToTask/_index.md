@@ -1,5 +1,5 @@
 ---
-title: ",Adding X-Ray Sidecar to ProductsServices Task Definition"
+title: " Adding X-Ray Sidecar to ProductsServices Task Definition"
 date: "`r Sys.Date()`"
 weight: 3
 chapter: false
